@@ -301,8 +301,6 @@ def WindChillGenXML(TempUnit = "Fahrenheit", WindUnit = "MPH", OutputFile = "-")
   wcof.close();
  return windchillout;
 
-WindChillGenXML(OutputFile = "WindChillChart.xml");
-
 def WindChillGenXMLFahrenheitMPH(Temperature, WindSpeed):
  return WindChillGenXML("Fahrenheit", "MPH", OutputFile);
 
@@ -425,7 +423,7 @@ def HeatIndexByRelativeHumidityGenXML(TempUnit = "Fahrenheit", OutputFile = "-")
  minhumid = 40;
  maxhumid = 100;
  humidstart = 40;
- humidityout = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE noaahic [\n<!ELEMENT noaahic (hic)*>\n<!ELEMENT hic EMPTY>\n<!ATTLIST hic temperaturef CDATA #IMPLIED>\n<!ATTLIST hic temperaturec CDATA #IMPLIED>\n<!ATTLIST hic temperaturer CDATA #IMPLIED>\n<!ATTLIST hic temperaturek CDATA #IMPLIED>\n<!ATTLIST hic humidity CDATA #IMPLIED>\n<!ATTLIST hic heatlevelnum CDATA #IMPLIED>\n<!ATTLIST hic heatlevel CDATA #IMPLIED>\n]>\n<noaahic>\n";
+ humidityout = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE noaahic [\n<!ELEMENT noaahic (hic)*>\n<!ELEMENT hic EMPTY>\n<!ATTLIST hic temperaturef CDATA #IMPLIED>\n<!ATTLIST hic temperaturec CDATA #IMPLIED>\n<!ATTLIST hic temperaturer CDATA #IMPLIED>\n<!ATTLIST hic temperaturek CDATA #IMPLIED>\n<!ATTLIST hic humidity CDATA #IMPLIED>\n<!ATTLIST hic humidityf CDATA #IMPLIED>\n<!ATTLIST hic humidityc CDATA #IMPLIED>\n<!ATTLIST hic humidityr CDATA #IMPLIED>\n<!ATTLIST hic humidityk CDATA #IMPLIED>\n<!ATTLIST hic heatlevelnum CDATA #IMPLIED>\n<!ATTLIST hic heatlevel CDATA #IMPLIED>\n]>\n<noaahic>\n";
  while(humidstart <= maxhumid):
   tempstart = 80;
   while(tempstart <= maxtemp):
@@ -447,7 +445,7 @@ def HeatIndexByRelativeHumidityGenXML(TempUnit = "Fahrenheit", OutputFile = "-")
       (humidstart == 90 and tempstart >= 80 and tempstart <= 80) or 
       (humidstart == 95 and tempstart >= 80 and tempstart <= 80) or 
       (humidstart == 100 and tempstart >= 80 and tempstart <= 80)):
-    humidityout = humidityout + " <hic temperaturef=\""+str(gettuval['FahrenheitRounded'])+"\" temperaturec=\""+str(gettuval['CelsiusRounded'])+"\" temperaturer=\""+str(gettuval['RankineRounded'])+"\" temperaturek=\""+str(gettuval['KelvinRounded'])+"\" humidity=\""+str(humidstart)+"\" heatlevelnum=\"0\" heatlevel=\"Caution\" />\n";
+    humidityout = humidityout + " <hic temperaturef=\""+str(gettuval['FahrenheitRounded'])+"\" temperaturec=\""+str(gettuval['CelsiusRounded'])+"\" temperaturer=\""+str(gettuval['RankineRounded'])+"\" temperaturek=\""+str(gettuval['KelvinRounded'])+"\" humidity=\""+str(humidstart)+"\" humidityf=\""+str(getwcval['FahrenheitRounded'])+"\" humidityc=\""+str(getwcval['CelsiusRounded'])+"\" humidityr=\""+str(getwcval['RankineRounded'])+"\" humidityk=\""+str(getwcval['KelvinRounded'])+"\" heatlevelnum=\"0\" heatlevel=\"Caution\" />\n";
    if((humidstart == 40 and tempstart >= 90 and tempstart <= 96) or 
       (humidstart == 45 and tempstart >= 90 and tempstart <= 94) or 
       (humidstart == 50 and tempstart >= 88 and tempstart <= 94) or 
@@ -461,7 +459,7 @@ def HeatIndexByRelativeHumidityGenXML(TempUnit = "Fahrenheit", OutputFile = "-")
       (humidstart == 90 and tempstart >= 82 and tempstart <= 84) or 
       (humidstart == 95 and tempstart >= 82 and tempstart <= 84) or 
       (humidstart == 100 and tempstart >= 82 and tempstart <= 84)):
-    humidityout = humidityout + " <hic temperaturef=\""+str(gettuval['FahrenheitRounded'])+"\" temperaturec=\""+str(gettuval['CelsiusRounded'])+"\" temperaturer=\""+str(gettuval['RankineRounded'])+"\" temperaturek=\""+str(gettuval['KelvinRounded'])+"\" humidity=\""+str(humidstart)+"\" heatlevelnum=\"1\" heatlevel=\"Extreme Caution\" />\n";
+    humidityout = humidityout + " <hic temperaturef=\""+str(gettuval['FahrenheitRounded'])+"\" temperaturec=\""+str(gettuval['CelsiusRounded'])+"\" temperaturer=\""+str(gettuval['RankineRounded'])+"\" temperaturek=\""+str(gettuval['KelvinRounded'])+"\" humidity=\""+str(humidstart)+"\" humidityf=\""+str(getwcval['FahrenheitRounded'])+"\" humidityc=\""+str(getwcval['CelsiusRounded'])+"\" humidityr=\""+str(getwcval['RankineRounded'])+"\" humidityk=\""+str(getwcval['KelvinRounded'])+"\" heatlevelnum=\"1\" heatlevel=\"Extreme Caution\" />\n";
    if((humidstart == 40 and tempstart >= 98 and tempstart <= 106) or 
       (humidstart == 45 and tempstart >= 96 and tempstart <= 104) or 
       (humidstart == 50 and tempstart >= 96 and tempstart <= 102) or 
@@ -475,7 +473,7 @@ def HeatIndexByRelativeHumidityGenXML(TempUnit = "Fahrenheit", OutputFile = "-")
       (humidstart == 90 and tempstart >= 86 and tempstart <= 90) or 
       (humidstart == 95 and tempstart >= 86 and tempstart <= 88) or 
       (humidstart == 100 and tempstart >= 86 and tempstart <= 88)):
-    humidityout = humidityout + " <hic temperaturef=\""+str(gettuval['FahrenheitRounded'])+"\" temperaturec=\""+str(gettuval['CelsiusRounded'])+"\" temperaturer=\""+str(gettuval['RankineRounded'])+"\" temperaturek=\""+str(gettuval['KelvinRounded'])+"\" humidity=\""+str(humidstart)+"\" heatlevelnum=\"2\" heatlevel=\"Danger\" />\n";
+    humidityout = humidityout + " <hic temperaturef=\""+str(gettuval['FahrenheitRounded'])+"\" temperaturec=\""+str(gettuval['CelsiusRounded'])+"\" temperaturer=\""+str(gettuval['RankineRounded'])+"\" temperaturek=\""+str(gettuval['KelvinRounded'])+"\" humidity=\""+str(humidstart)+"\" humidityf=\""+str(getwcval['FahrenheitRounded'])+"\" humidityc=\""+str(getwcval['CelsiusRounded'])+"\" humidityr=\""+str(getwcval['RankineRounded'])+"\" humidityk=\""+str(getwcval['KelvinRounded'])+"\" heatlevelnum=\"2\" heatlevel=\"Danger\" />\n";
    if((humidstart == 40 and tempstart >= 108 and tempstart <= 110) or 
       (humidstart == 45 and tempstart >= 106 and tempstart <= 108) or 
       (humidstart == 50 and tempstart >= 104 and tempstart <= 106) or 
@@ -489,7 +487,7 @@ def HeatIndexByRelativeHumidityGenXML(TempUnit = "Fahrenheit", OutputFile = "-")
       (humidstart == 90 and tempstart >= 92 and tempstart <= 92) or 
       (humidstart == 95 and tempstart >= 90 and tempstart <= 90) or 
       (humidstart == 100 and tempstart >= 90 and tempstart <= 90)):
-    humidityout = humidityout + " <hic temperaturef=\""+str(gettuval['FahrenheitRounded'])+"\" temperaturec=\""+str(gettuval['CelsiusRounded'])+"\" temperaturer=\""+str(gettuval['RankineRounded'])+"\" temperaturek=\""+str(gettuval['KelvinRounded'])+"\" humidity=\""+str(humidstart)+"\" heatlevelnum=\"3\" heatlevel=\"Extreme Danger\" />\n";
+    humidityout = humidityout + " <hic temperaturef=\""+str(gettuval['FahrenheitRounded'])+"\" temperaturec=\""+str(gettuval['CelsiusRounded'])+"\" temperaturer=\""+str(gettuval['RankineRounded'])+"\" temperaturek=\""+str(gettuval['KelvinRounded'])+"\" humidity=\""+str(humidstart)+"\" humidityf=\""+str(getwcval['FahrenheitRounded'])+"\" humidityc=\""+str(getwcval['CelsiusRounded'])+"\" humidityr=\""+str(getwcval['RankineRounded'])+"\" humidityk=\""+str(getwcval['KelvinRounded'])+"\" heatlevelnum=\"3\" heatlevel=\"Extreme Danger\" />\n";
    tempstart = tempstart + 2;
   humidstart = humidstart + 5;
  humidityout = humidityout + "</noaahic>\n";
@@ -498,8 +496,6 @@ def HeatIndexByRelativeHumidityGenXML(TempUnit = "Fahrenheit", OutputFile = "-")
   wcof.write(humidityout);
   wcof.close();
  return humidityout;
-
-HeatIndexByRelativeHumidityGenXML(OutputFile = "HeatIndexChart.xml");
 
 def HeatIndexByRelativeHumidityGenXMLFahrenheitMPH(Temperature, WindSpeed):
  return HeatIndexByRelativeHumidityGenXML("Fahrenheit", "MPH", OutputFile);
