@@ -207,6 +207,18 @@ def WindChill(Temperature, WindSpeed, TempUnit = "Fahrenheit", WindUnit = "MPH")
   });
  return windchillret;
 
+def WindChillFahrenheitMPH(Temperature, WindSpeed):
+ return WindChill(Temperature, WindSpeed, "Fahrenheit", "MPH");
+
+def WindChillFahrenheitKMH(Temperature, WindSpeed):
+ return WindChill(Temperature, WindSpeed, "Fahrenheit", "KMH");
+
+def WindChillCelsiusKMH(Temperature, WindSpeed):
+ return WindChill(Temperature, WindSpeed, "Celsius", "KMH");
+
+def WindChillCelsiusMPH(Temperature, WindSpeed):
+ return WindChill(Temperature, WindSpeed, "Celsius", "MPH");
+
 def WindChillGenXML(TempUnit = "Fahrenheit", WindUnit = "MPH", OutputFile = "-"):
  TempUnit = TempUnit.capitalize();
  WindUnit = WindUnit.upper();
@@ -288,19 +300,17 @@ def WindChillGenXML(TempUnit = "Fahrenheit", WindUnit = "MPH", OutputFile = "-")
   wcof.close();
  return windchillout;
 
-print(WindChillGenXML(OutputFile = "WindChillChart.xml"));
+def WindChillGenXMLFahrenheitMPH(Temperature, WindSpeed):
+ return WindChillGenXML("Fahrenheit", "MPH", OutputFile);
 
-def WindChillFahrenheitMPH(Temperature, WindSpeed):
- return WindChill(Temperature, WindSpeed, "Fahrenheit", "MPH");
+def WindChillGenXMLFahrenheitKMH(Temperature, WindSpeed):
+ return WindChillGenXML("Fahrenheit", "KMH", OutputFile);
 
-def WindChillFahrenheitKMH(Temperature, WindSpeed):
- return WindChill(Temperature, WindSpeed, "Fahrenheit", "KMH");
+def WindChillGenXMLCelsiusKMH(Temperature, WindSpeed):
+ return WindChillGenXML("Celsius", "KMH", OutputFile);
 
-def WindChillCelsiusKMH(Temperature, WindSpeed):
- return WindChill(Temperature, WindSpeed, "Celsius", "KMH");
-
-def WindChillCelsiusMPH(Temperature, WindSpeed):
- return WindChill(Temperature, WindSpeed, "Celsius", "MPH");
+def WindChillGenXMLCelsiusMPH(Temperature, WindSpeed):
+ return WindChillGenXML("Celsius", "MPH", OutputFile);
 
 def HeatIndexByDewPoint(Temperature, DewPointTemp, TempUnit = "Fahrenheit"):
  TempUnit = TempUnit.capitalize();
