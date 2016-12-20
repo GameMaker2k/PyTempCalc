@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE noaahic [
+<!ELEMENT noaahic (hic)*>
+<!ELEMENT hic EMPTY>
+<!ATTLIST hic temperaturef CDATA #IMPLIED>
+<!ATTLIST hic temperaturec CDATA #IMPLIED>
+<!ATTLIST hic temperaturer CDATA #IMPLIED>
+<!ATTLIST hic temperaturek CDATA #IMPLIED>
+<!ATTLIST hic humidity CDATA #IMPLIED>
+<!ATTLIST hic heatlevelnum CDATA #IMPLIED>
+<!ATTLIST hic heatlevel CDATA #IMPLIED>
+]>
+<noaahic>
+ <hic temperaturef="80" temperaturec="27" temperaturer="353" temperaturek="300" humidity="40" heatlevelnum="0" heatlevel="Caution" />
+ <hic temperaturef="82" temperaturec="28" temperaturer="355" temperaturek="301" humidity="40" heatlevelnum="0" heatlevel="Caution" />
+ <hic temperaturef="84" temperaturec="29" temperaturer="357" temperaturek="302" humidity="40" heatlevelnum="0" heatlevel="Caution" />
+ <hic temperaturef="86" temperaturec="30" temperaturer="359" temperaturek="303" humidity="40" heatlevelnum="0" heatlevel="Caution" />
+ <hic temperaturef="88" temperaturec="31" temperaturer="361" temperaturek="304" humidity="40" heatlevelnum="0" heatlevel="Caution" />
+ <hic temperaturef="90" temperaturec="32" temperaturer="363" temperaturek="305" humidity="40" heatlevelnum="1" heatlevel="Extreme Caution" />
+ <hic temperaturef="92" temperaturec="33" temperaturer="365" temperaturek="306" humidity="40" heatlevelnum="1" heatlevel="Extreme Caution" />
+ <hic temperaturef="94" temperaturec="34" temperaturer="367" temperaturek="308" humidity="40" heatlevelnum="1" heatlevel="Extreme Caution" />
+ <hic temperaturef="96" temperaturec="36" temperaturer="369" temperaturek="309" humidity="40" heatlevelnum="1" heatlevel="Extreme Caution" />
+ <hic temperaturef="98" temperaturec="37" temperaturer="371" temperaturek="310" humidity="40" heatlevelnum="2" heatlevel="Danger" />
+ <hic temperaturef="100" temperaturec="38" temperaturer="373" temperaturek="311" humidity="40" heatlevelnum="2" heatlevel="Danger" />
+ <hic temperaturef="102" temperaturec="39" temperaturer="375" temperaturek="312" humidity="40" heatlevelnum="2" heatlevel="Danger" />
+ <hic temperaturef="104" temperaturec="40" temperaturer="377" temperaturek="313" humidity="40" heatlevelnum="2" heatlevel="Danger" />
+ <hic temperaturef="106" temperaturec="41" temperaturer="379" temperaturek="314" humidity="40" heatlevelnum="2" heatlevel="Danger" />
+ <hic temperaturef="108" temperaturec="42" temperaturer="381" temperaturek="315" humidity="40" heatlevelnum="3" heatlevel="Extreme Danger" />
+ <hic temperaturef="110" temperaturec="43" temperaturer="383" temperaturek="316" humidity="40" heatlevelnum="3" heatlevel="Extreme Danger" />
+ <hic temperaturef="80" temperaturec="27" temperaturer="353" temperaturek="300" humidity="45" heatlevelnum="0" heatlevel="Caution" />
+ <hic temperaturef="82" temperaturec="28" temperaturer="355" temperaturek="301" humidity="45" heatlevelnum="0" heatlevel="Caution" />
+ <hic temperaturef="84" temperaturec="29" temperaturer="357" temperaturek="302" humidity="45" heatlevelnum="0" heatlevel="Caution" />
+ <hic temperaturef="86" temperaturec="30" temperaturer="359" temperaturek="303" humidity="45" heatlevelnum="0" heatlevel="Caution" />
+ <hic temperaturef="88" temperaturec="31" temperaturer="361" temperaturek="304" humidity="45" heatlevelnum="0" heatlevel="Caution" />
+ <hic temperaturef="90" temperaturec="32" temperaturer="363" temperaturek="305" humidity="45" heatlevelnum="1" heatlevel="Extreme Caution" />
+ <hic temperaturef="92" temperaturec="33" temperaturer="365" temperaturek="306" humidity="45" heatlevelnum="1" heatlevel="Extreme Caution" />
+ <hic temperaturef="94" temperaturec="34" temperaturer="367" temperaturek="308" humidity="45" heatlevelnum="1" heatlevel="Extreme Caution" />
+ <hic temperaturef="96" temperaturec="36" temperaturer="369" temperaturek="309" humidity="45" heatlevelnum="2" heatlevel="Danger" />
+ <hic temperaturef="98" temperaturec="37" temperaturer="371" temperaturek="310" humidity="45" heatlevelnum="2" heatlevel="Danger" />
+ <hic temperaturef="100" temperaturec="38" temperaturer="373" temperaturek="311" humidity="45" heatlevelnum="2" heatlevel="Danger" />
+ <hic temperaturef="102" temperaturec="39" temperaturer="375" temperaturek="312" humidity="45" heatlevelnum="2" heatlevel="Danger" />
+ <hic temperaturef="104" temperaturec="40" temperaturer="377" temperaturek="313" humidity="45" heatlevelnum="2" heatlevel="Danger" />
+ <hic temperaturef="106" temperaturec="41" temperaturer="379" temperaturek="314" humidity="45" heatlevelnum="3" heatlevel="Extreme Danger" />
+ <hic temperaturef="108" temperaturec="42" temperaturer="381" temperaturek="315" humidity="45" heatlevelnum="3" heatlevel="Extreme Danger" />
+ <hic temperaturef="80" temperaturec="27" temperaturer="353" temperaturek="300" humidity="50" heatlevelnum="0" heatlevel="Caution" />
+ <hic temperaturef="82" temperaturec="28" temperaturer="355" temperaturek="301" humidity="50" heatlevelnum="0" heatlevel="Caution" />
+ <hic temperaturef="84" temperaturec="29" temperaturer="357" temperaturek="302" humidity="50" heatlevelnum="0" heatlevel="Caution" />
+ <hic temperaturef="86" temperaturec="30" temperaturer="359" temperaturek="303" humidity="50" heatlevelnum="0" heatlevel="Caution" />
+ <hic temperaturef="88" temperaturec="31" temperaturer="361" temperaturek="304" humidity="50" heatlevelnum="1" heatlevel="Extreme Caution" />
+ <hic temperaturef="90" temperaturec="32" temperaturer="363" temperaturek="305" humidity="50" heatlevelnum="1" heatlevel="Extreme Caution" />
+ <hic temperaturef="92" temperaturec="33" temperaturer="365" temperaturek="306" humidity="50" heatlevelnum="1" heatlevel="Extreme Caution" />
+ <hic temperaturef="94" temperaturec="34" temperaturer="367" temperaturek="308" humidity="50" heatlevelnum="1" heatlevel="Extreme Caution" />
+ <hic temperaturef="96" temperaturec="36" temperaturer="369" temperaturek="309" humidity="50" heatlevelnum="2" heatlevel="Danger" />
+ <hic temperaturef="98" temperaturec="37" temperaturer="371" temperaturek="310" humidity="50" heatlevelnum="2" heatlevel="Danger" />
+ <hic temperaturef="100" temperaturec="38" temperaturer="373" temperaturek="311" humidity="50" heatlevelnum="2" heatlevel="Danger" />
+ <hic temperaturef="102" temperaturec="39" temperaturer="375" temperaturek="312" humidity="50" heatlevelnum="2" heatlevel="Danger" />
+ <hic temperaturef="104" temperaturec="40" temperaturer="377" temperaturek="313" humidity="50" heatlevelnum="3" heatlevel="Extreme Danger" />
+ <hic temperaturef="106" temperaturec="41" temperaturer="379" temperaturek="314" humidity="50" heatlevelnum="3" heatlevel="Extreme Danger" />
+ <hic temperaturef="80" temperaturec="27" temperaturer="353" temperaturek="300" humidity="55" heatlevelnum="0" heatlevel="Caution" />
+ <hic temperaturef="82" temperaturec="28" temperaturer="355" temperaturek="301" humidity="55" heatlevelnum="0" heatlevel="Caution" />
+ <hic temperaturef="84" temperaturec="29" temperaturer="357" temperaturek="302" humidity="55" heatlevelnum="0" heatlevel="Caution" />
+ <hic temperaturef="86" temperaturec="30" temperaturer="359" temperaturek="303" humidity="55" heatlevelnum="0" heatlevel="Caution" />
+ <hic temperaturef="88" temperaturec="31" temperaturer="361" temperaturek="304" humidity="55" heatlevelnum="1" heatlevel="Extreme Caution" />
+ <hic temperaturef="90" temperaturec="32" temperaturer="363" temperaturek="305" humidity="55" heatlevelnum="1" heatlevel="Extreme Caution" />
+ <hic temperaturef="92" temperaturec="33" temperaturer="365" temperaturek="306" humidity="55" heatlevelnum="1" heatlevel="Extreme Caution" />
+ <hic temperaturef="94" temperaturec="34" temperaturer="367" temperaturek="308" humidity="55" heatlevelnum="2" heatlevel="Danger" />
+ <hic temperaturef="96" temperaturec="36" temperaturer="369" temperaturek="309" humidity="55" heatlevelnum="2" heatlevel="Danger" />
+ <hic temperaturef="98" temperaturec="37" temperaturer="371" temperaturek="310" humidity="55" heatlevelnum="2" heatlevel="Danger" />
+ <hic temperaturef="100" temperaturec="38" temperaturer="373" temperaturek="311" humidity="55" heatlevelnum="2" heatlevel="Danger" />
+ <hic temperaturef="102" temperaturec="39" temperaturer="375" temperaturek="312" humidity="55" heatlevelnum="3" heatlevel="Extreme Danger" />
+ <hic temperaturef="104" temperaturec="40" temperaturer="377" temperaturek="313" humidity="55" heatlevelnum="3" heatlevel="Extreme Danger" />
+ <hic temperaturef="80" temperaturec="27" temperaturer="353" temperaturek="300" humidity="60" heatlevelnum="0" heatlevel="Caution" />
+ <hic temperaturef="82" temperaturec="28" temperaturer="355" temperaturek="301" humidity="60" heatlevelnum="0" heatlevel="Caution" />
+ <hic temperaturef="84" temperaturec="29" temperaturer="357" temperaturek="302" humidity="60" heatlevelnum="0" heatlevel="Caution" />
+ <hic temperaturef="86" temperaturec="30" temperaturer="359" temperaturek="303" humidity="60" heatlevelnum="1" heatlevel="Extreme Caution" />
+ <hic temperaturef="88" temperaturec="31" temperaturer="361" temperaturek="304" humidity="60" heatlevelnum="1" heatlevel="Extreme Caution" />
+ <hic temperaturef="90" temperaturec="32" temperaturer="363" temperaturek="305" humidity="60" heatlevelnum="1" heatlevel="Extreme Caution" />
+ <hic temperaturef="92" temperaturec="33" temperaturer="365" temperaturek="306" humidity="60" heatlevelnum="2" heatlevel="Danger" />
+ <hic temperaturef="94" temperaturec="34" temperaturer="367" temperaturek="308" humidity="60" heatlevelnum="2" heatlevel="Danger" />
+ <hic temperaturef="96" temperaturec="36" temperaturer="369" temperaturek="309" humidity="60" heatlevelnum="2" heatlevel="Danger" />
+ <hic temperaturef="98" temperaturec="37" temperaturer="371" temperaturek="310" humidity="60" heatlevelnum="2" heatlevel="Danger" />
+ <hic temperaturef="100" temperaturec="38" temperaturer="373" temperaturek="311" humidity="60" heatlevelnum="3" heatlevel="Extreme Danger" />
+ <hic temperaturef="102" temperaturec="39" temperaturer="375" temperaturek="312" humidity="60" heatlevelnum="3" heatlevel="Extreme Danger" />
+ <hic temperaturef="80" temperaturec="27" temperaturer="353" temperaturek="300" humidity="65" heatlevelnum="0" heatlevel="Caution" />
+ <hic temperaturef="82" temperaturec="28" temperaturer="355" temperaturek="301" humidity="65" heatlevelnum="0" heatlevel="Caution" />
+ <hic temperaturef="84" temperaturec="29" temperaturer="357" temperaturek="302" humidity="65" heatlevelnum="0" heatlevel="Caution" />
+ <hic temperaturef="86" temperaturec="30" temperaturer="359" temperaturek="303" humidity="65" heatlevelnum="1" heatlevel="Extreme Caution" />
+ <hic temperaturef="88" temperaturec="31" temperaturer="361" temperaturek="304" humidity="65" heatlevelnum="1" heatlevel="Extreme Caution" />
+ <hic temperaturef="90" temperaturec="32" temperaturer="363" temperaturek="305" humidity="65" heatlevelnum="1" heatlevel="Extreme Caution" />
+ <hic temperaturef="92" temperaturec="33" temperaturer="365" temperaturek="306" humidity="65" heatlevelnum="2" heatlevel="Danger" />
+ <hic temperaturef="94" temperaturec="34" temperaturer="367" temperaturek="308" humidity="65" heatlevelnum="2" heatlevel="Danger" />
+ <hic temperaturef="96" temperaturec="36" temperaturer="369" temperaturek="309" humidity="65" heatlevelnum="2" heatlevel="Danger" />
+ <hic temperaturef="98" temperaturec="37" temperaturer="371" temperaturek="310" humidity="65" heatlevelnum="3" heatlevel="Extreme Danger" />
+ <hic temperaturef="100" temperaturec="38" temperaturer="373" temperaturek="311" humidity="65" heatlevelnum="3" heatlevel="Extreme Danger" />
+ <hic temperaturef="80" temperaturec="27" temperaturer="353" temperaturek="300" humidity="70" heatlevelnum="0" heatlevel="Caution" />
+ <hic temperaturef="82" temperaturec="28" temperaturer="355" temperaturek="301" humidity="70" heatlevelnum="0" heatlevel="Caution" />
+ <hic temperaturef="86" temperaturec="30" temperaturer="359" temperaturek="303" humidity="70" heatlevelnum="1" heatlevel="Extreme Caution" />
+ <hic temperaturef="88" temperaturec="31" temperaturer="361" temperaturek="304" humidity="70" heatlevelnum="1" heatlevel="Extreme Caution" />
+ <hic temperaturef="90" temperaturec="32" temperaturer="363" temperaturek="305" humidity="70" heatlevelnum="2" heatlevel="Danger" />
+ <hic temperaturef="92" temperaturec="33" temperaturer="365" temperaturek="306" humidity="70" heatlevelnum="2" heatlevel="Danger" />
+ <hic temperaturef="94" temperaturec="34" temperaturer="367" temperaturek="308" humidity="70" heatlevelnum="2" heatlevel="Danger" />
+ <hic temperaturef="96" temperaturec="36" temperaturer="369" temperaturek="309" humidity="70" heatlevelnum="3" heatlevel="Extreme Danger" />
+ <hic temperaturef="98" temperaturec="37" temperaturer="371" temperaturek="310" humidity="70" heatlevelnum="3" heatlevel="Extreme Danger" />
+ <hic temperaturef="80" temperaturec="27" temperaturer="353" temperaturek="300" humidity="75" heatlevelnum="0" heatlevel="Caution" />
+ <hic temperaturef="82" temperaturec="28" temperaturer="355" temperaturek="301" humidity="75" heatlevelnum="0" heatlevel="Caution" />
+ <hic temperaturef="84" temperaturec="29" temperaturer="357" temperaturek="302" humidity="75" heatlevelnum="1" heatlevel="Extreme Caution" />
+ <hic temperaturef="86" temperaturec="30" temperaturer="359" temperaturek="303" humidity="75" heatlevelnum="1" heatlevel="Extreme Caution" />
+ <hic temperaturef="88" temperaturec="31" temperaturer="361" temperaturek="304" humidity="75" heatlevelnum="2" heatlevel="Danger" />
+ <hic temperaturef="90" temperaturec="32" temperaturer="363" temperaturek="305" humidity="75" heatlevelnum="2" heatlevel="Danger" />
+ <hic temperaturef="92" temperaturec="33" temperaturer="365" temperaturek="306" humidity="75" heatlevelnum="2" heatlevel="Danger" />
+ <hic temperaturef="94" temperaturec="34" temperaturer="367" temperaturek="308" humidity="75" heatlevelnum="2" heatlevel="Danger" />
+ <hic temperaturef="96" temperaturec="36" temperaturer="369" temperaturek="309" humidity="75" heatlevelnum="3" heatlevel="Extreme Danger" />
+ <hic temperaturef="80" temperaturec="27" temperaturer="353" temperaturek="300" humidity="80" heatlevelnum="0" heatlevel="Caution" />
+ <hic temperaturef="82" temperaturec="28" temperaturer="355" temperaturek="301" humidity="80" heatlevelnum="0" heatlevel="Caution" />
+ <hic temperaturef="84" temperaturec="29" temperaturer="357" temperaturek="302" humidity="80" heatlevelnum="1" heatlevel="Extreme Caution" />
+ <hic temperaturef="86" temperaturec="30" temperaturer="359" temperaturek="303" humidity="80" heatlevelnum="1" heatlevel="Extreme Caution" />
+ <hic temperaturef="88" temperaturec="31" temperaturer="361" temperaturek="304" humidity="80" heatlevelnum="2" heatlevel="Danger" />
+ <hic temperaturef="90" temperaturec="32" temperaturer="363" temperaturek="305" humidity="80" heatlevelnum="2" heatlevel="Danger" />
+ <hic temperaturef="92" temperaturec="33" temperaturer="365" temperaturek="306" humidity="80" heatlevelnum="2" heatlevel="Danger" />
+ <hic temperaturef="94" temperaturec="34" temperaturer="367" temperaturek="308" humidity="80" heatlevelnum="3" heatlevel="Extreme Danger" />
+ <hic temperaturef="80" temperaturec="27" temperaturer="353" temperaturek="300" humidity="85" heatlevelnum="0" heatlevel="Caution" />
+ <hic temperaturef="82" temperaturec="28" temperaturer="355" temperaturek="301" humidity="85" heatlevelnum="0" heatlevel="Caution" />
+ <hic temperaturef="84" temperaturec="29" temperaturer="357" temperaturek="302" humidity="85" heatlevelnum="1" heatlevel="Extreme Caution" />
+ <hic temperaturef="86" temperaturec="30" temperaturer="359" temperaturek="303" humidity="85" heatlevelnum="1" heatlevel="Extreme Caution" />
+ <hic temperaturef="88" temperaturec="31" temperaturer="361" temperaturek="304" humidity="85" heatlevelnum="2" heatlevel="Danger" />
+ <hic temperaturef="90" temperaturec="32" temperaturer="363" temperaturek="305" humidity="85" heatlevelnum="2" heatlevel="Danger" />
+ <hic temperaturef="92" temperaturec="33" temperaturer="365" temperaturek="306" humidity="85" heatlevelnum="3" heatlevel="Extreme Danger" />
+ <hic temperaturef="94" temperaturec="34" temperaturer="367" temperaturek="308" humidity="85" heatlevelnum="3" heatlevel="Extreme Danger" />
+ <hic temperaturef="80" temperaturec="27" temperaturer="353" temperaturek="300" humidity="90" heatlevelnum="0" heatlevel="Caution" />
+ <hic temperaturef="82" temperaturec="28" temperaturer="355" temperaturek="301" humidity="90" heatlevelnum="1" heatlevel="Extreme Caution" />
+ <hic temperaturef="84" temperaturec="29" temperaturer="357" temperaturek="302" humidity="90" heatlevelnum="1" heatlevel="Extreme Caution" />
+ <hic temperaturef="86" temperaturec="30" temperaturer="359" temperaturek="303" humidity="90" heatlevelnum="2" heatlevel="Danger" />
+ <hic temperaturef="88" temperaturec="31" temperaturer="361" temperaturek="304" humidity="90" heatlevelnum="2" heatlevel="Danger" />
+ <hic temperaturef="90" temperaturec="32" temperaturer="363" temperaturek="305" humidity="90" heatlevelnum="2" heatlevel="Danger" />
+ <hic temperaturef="92" temperaturec="33" temperaturer="365" temperaturek="306" humidity="90" heatlevelnum="3" heatlevel="Extreme Danger" />
+ <hic temperaturef="80" temperaturec="27" temperaturer="353" temperaturek="300" humidity="95" heatlevelnum="0" heatlevel="Caution" />
+ <hic temperaturef="82" temperaturec="28" temperaturer="355" temperaturek="301" humidity="95" heatlevelnum="1" heatlevel="Extreme Caution" />
+ <hic temperaturef="84" temperaturec="29" temperaturer="357" temperaturek="302" humidity="95" heatlevelnum="1" heatlevel="Extreme Caution" />
+ <hic temperaturef="86" temperaturec="30" temperaturer="359" temperaturek="303" humidity="95" heatlevelnum="2" heatlevel="Danger" />
+ <hic temperaturef="88" temperaturec="31" temperaturer="361" temperaturek="304" humidity="95" heatlevelnum="2" heatlevel="Danger" />
+ <hic temperaturef="90" temperaturec="32" temperaturer="363" temperaturek="305" humidity="95" heatlevelnum="3" heatlevel="Extreme Danger" />
+ <hic temperaturef="80" temperaturec="27" temperaturer="353" temperaturek="300" humidity="100" heatlevelnum="0" heatlevel="Caution" />
+ <hic temperaturef="82" temperaturec="28" temperaturer="355" temperaturek="301" humidity="100" heatlevelnum="1" heatlevel="Extreme Caution" />
+ <hic temperaturef="84" temperaturec="29" temperaturer="357" temperaturek="302" humidity="100" heatlevelnum="1" heatlevel="Extreme Caution" />
+ <hic temperaturef="86" temperaturec="30" temperaturer="359" temperaturek="303" humidity="100" heatlevelnum="2" heatlevel="Danger" />
+ <hic temperaturef="88" temperaturec="31" temperaturer="361" temperaturek="304" humidity="100" heatlevelnum="2" heatlevel="Danger" />
+ <hic temperaturef="90" temperaturec="32" temperaturer="363" temperaturek="305" humidity="100" heatlevelnum="3" heatlevel="Extreme Danger" />
+</noaahic>

@@ -228,7 +228,7 @@ def WindChillGenXML(TempUnit = "Fahrenheit", WindUnit = "MPH", OutputFile = "-")
  minwind = 5;
  maxwind = 60;
  windstart = 5;
- windchillout = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE noaawcc [\n<!ELEMENT noaawcc (wcc)*>\n<!ELEMENT wcc EMPTY>\n<!ATTLIST wcc windspeedmph CDATA #REQUIRED>\n<!ATTLIST wcc windspeedkhm CDATA #REQUIRED>\n<!ATTLIST wcc temperaturef CDATA #IMPLIED>\n<!ATTLIST wcc temperaturec CDATA #IMPLIED>\n<!ATTLIST wcc temperaturer CDATA #IMPLIED>\n<!ATTLIST wcc temperaturek CDATA #IMPLIED>\n<!ATTLIST wcc windchillf CDATA #IMPLIED>\n<!ATTLIST wcc windchillc CDATA #IMPLIED>\n<!ATTLIST wcc windchillr CDATA #IMPLIED>\n<!ATTLIST wcc windchillk CDATA #IMPLIED>\n<!ATTLIST wcc frostbitemin CDATA #IMPLIED>\n]>\n<noaawcc>\n";
+ windchillout = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE noaawcc [\n<!ELEMENT noaawcc (wcc)*>\n<!ELEMENT wcc EMPTY>\n<!ATTLIST wcc windspeedmph CDATA #REQUIRED>\n<!ATTLIST wcc windspeedkhm CDATA #REQUIRED>\n<!ATTLIST wcc temperaturef CDATA #IMPLIED>\n<!ATTLIST wcc temperaturec CDATA #IMPLIED>\n<!ATTLIST wcc temperaturer CDATA #IMPLIED>\n<!ATTLIST wcc temperaturek CDATA #IMPLIED>\n<!ATTLIST wcc windchillf CDATA #IMPLIED>\n<!ATTLIST wcc windchillc CDATA #IMPLIED>\n<!ATTLIST wcc windchillr CDATA #IMPLIED>\n<!ATTLIST wcc windchillk CDATA #IMPLIED>\n<!ATTLIST wcc frostbitelevel CDATA #IMPLIED>\n<!ATTLIST wcc frostbitemin CDATA #IMPLIED>\n]>\n<noaawcc>\n";
  while(windstart <= maxwind):
   tempstart = 40;
   while(tempstart >= mintemp):
@@ -241,6 +241,7 @@ def WindChillGenXML(TempUnit = "Fahrenheit", WindUnit = "MPH", OutputFile = "-")
     getwuval = ConvertWindUnits(tempstart, "MPH", "KMH");
    if(WindUnit == "KMH"):
     getwuval = ConvertWindUnits(tempstart, "KMH", "MPH");
+    tempstart = getwuval['MPHRounded'];
    if((windstart == 5 and tempstart <= 40 and tempstart >= -5) or 
       (windstart == 10 and tempstart <= 40 and tempstart >= 0) or 
       (windstart == 15 and tempstart <= 40 and tempstart >= 5) or 
@@ -253,7 +254,7 @@ def WindChillGenXML(TempUnit = "Fahrenheit", WindUnit = "MPH", OutputFile = "-")
       (windstart == 50 and tempstart <= 40 and tempstart >= 10) or 
       (windstart == 55 and tempstart <= 40 and tempstart >= 15) or 
       (windstart == 60 and tempstart <= 40 and tempstart >= 15)):
-    windchillout = windchillout + " <wcc windspeedmph=\""+str(getwuval['MPHRounded'])+"\" windspeedkhm=\""+str(getwuval['KMHRounded'])+"\" temperaturef=\""+str(gettuval['FahrenheitRounded'])+"\" temperaturec=\""+str(gettuval['CelsiusRounded'])+"\" temperaturer=\""+str(gettuval['RankineRounded'])+"\" temperaturek=\""+str(gettuval['KelvinRounded'])+"\" windchillf=\""+str(getwcval['FahrenheitRounded'])+"\" windchillc=\""+str(getwcval['CelsiusRounded'])+"\" windchillr=\""+str(getwcval['RankineRounded'])+"\" windchillk=\""+str(getwcval['KelvinRounded'])+"\" frostbitemin=\"-1\" />\n";
+    windchillout = windchillout + " <wcc windspeedmph=\""+str(getwuval['MPHRounded'])+"\" windspeedkhm=\""+str(getwuval['KMHRounded'])+"\" temperaturef=\""+str(gettuval['FahrenheitRounded'])+"\" temperaturec=\""+str(gettuval['CelsiusRounded'])+"\" temperaturer=\""+str(gettuval['RankineRounded'])+"\" temperaturek=\""+str(gettuval['KelvinRounded'])+"\" windchillf=\""+str(getwcval['FahrenheitRounded'])+"\" windchillc=\""+str(getwcval['CelsiusRounded'])+"\" windchillr=\""+str(getwcval['RankineRounded'])+"\" windchillk=\""+str(getwcval['KelvinRounded'])+"\" frostbitelevel=\"0\" frostbitemin=\"-1\" />\n";
    if((windstart == 5 and tempstart <= -10 and tempstart >= -35) or 
       (windstart == 10 and tempstart <= -5 and tempstart >= -20) or 
       (windstart == 15 and tempstart <= 0 and tempstart >= -15) or 
@@ -266,7 +267,7 @@ def WindChillGenXML(TempUnit = "Fahrenheit", WindUnit = "MPH", OutputFile = "-")
       (windstart == 50 and tempstart <= 5 and tempstart >= 0) or 
       (windstart == 55 and tempstart <= 10 and tempstart >= 5) or 
       (windstart == 60 and tempstart <= 10 and tempstart >= 5)):
-    windchillout = windchillout + " <wcc windspeedmph=\""+str(getwuval['MPHRounded'])+"\" windspeedkhm=\""+str(getwuval['KMHRounded'])+"\" temperaturef=\""+str(gettuval['FahrenheitRounded'])+"\" temperaturec=\""+str(gettuval['CelsiusRounded'])+"\" temperaturer=\""+str(gettuval['RankineRounded'])+"\" temperaturek=\""+str(gettuval['KelvinRounded'])+"\" windchillf=\""+str(getwcval['FahrenheitRounded'])+"\" windchillc=\""+str(getwcval['CelsiusRounded'])+"\" windchillr=\""+str(getwcval['RankineRounded'])+"\" windchillk=\""+str(getwcval['KelvinRounded'])+"\" frostbitemin=\"30\" />\n";
+    windchillout = windchillout + " <wcc windspeedmph=\""+str(getwuval['MPHRounded'])+"\" windspeedkhm=\""+str(getwuval['KMHRounded'])+"\" temperaturef=\""+str(gettuval['FahrenheitRounded'])+"\" temperaturec=\""+str(gettuval['CelsiusRounded'])+"\" temperaturer=\""+str(gettuval['RankineRounded'])+"\" temperaturek=\""+str(gettuval['KelvinRounded'])+"\" windchillf=\""+str(getwcval['FahrenheitRounded'])+"\" windchillc=\""+str(getwcval['CelsiusRounded'])+"\" windchillr=\""+str(getwcval['RankineRounded'])+"\" windchillk=\""+str(getwcval['KelvinRounded'])+"\" frostbitelevel=\"1\" frostbitemin=\"30\" />\n";
    if((windstart == 5 and tempstart <= -40 and tempstart >= -45) or 
       (windstart == 10 and tempstart <= -25 and tempstart >= -45) or 
       (windstart == 15 and tempstart <= -20 and tempstart >= -35) or 
@@ -279,7 +280,7 @@ def WindChillGenXML(TempUnit = "Fahrenheit", WindUnit = "MPH", OutputFile = "-")
       (windstart == 50 and tempstart <= -5 and tempstart >= -10) or 
       (windstart == 55 and tempstart <= 0 and tempstart >= -10) or 
       (windstart == 60 and tempstart <= 0 and tempstart >= 0)):
-    windchillout = windchillout + " <wcc windspeedmph=\""+str(getwuval['MPHRounded'])+"\" windspeedkhm=\""+str(getwuval['KMHRounded'])+"\" temperaturef=\""+str(gettuval['FahrenheitRounded'])+"\" temperaturec=\""+str(gettuval['CelsiusRounded'])+"\" temperaturer=\""+str(gettuval['RankineRounded'])+"\" temperaturek=\""+str(gettuval['KelvinRounded'])+"\" windchillf=\""+str(getwcval['FahrenheitRounded'])+"\" windchillc=\""+str(getwcval['CelsiusRounded'])+"\" windchillr=\""+str(getwcval['RankineRounded'])+"\" windchillk=\""+str(getwcval['KelvinRounded'])+"\" frostbitemin=\"10\" />\n";
+    windchillout = windchillout + " <wcc windspeedmph=\""+str(getwuval['MPHRounded'])+"\" windspeedkhm=\""+str(getwuval['KMHRounded'])+"\" temperaturef=\""+str(gettuval['FahrenheitRounded'])+"\" temperaturec=\""+str(gettuval['CelsiusRounded'])+"\" temperaturer=\""+str(gettuval['RankineRounded'])+"\" temperaturek=\""+str(gettuval['KelvinRounded'])+"\" windchillf=\""+str(getwcval['FahrenheitRounded'])+"\" windchillc=\""+str(getwcval['CelsiusRounded'])+"\" windchillr=\""+str(getwcval['RankineRounded'])+"\" windchillk=\""+str(getwcval['KelvinRounded'])+"\" frostbitelevel=\"2\" frostbitemin=\"10\" />\n";
    if((windstart == 15 and tempstart <= -40 and tempstart >= -45) or 
       (windstart == 20 and tempstart <= -35 and tempstart >= -45) or 
       (windstart == 25 and tempstart <= -30 and tempstart >= -45) or 
@@ -290,7 +291,7 @@ def WindChillGenXML(TempUnit = "Fahrenheit", WindUnit = "MPH", OutputFile = "-")
       (windstart == 50 and tempstart <= -15 and tempstart >= -45) or 
       (windstart == 55 and tempstart <= -15 and tempstart >= -45) or 
       (windstart == 60 and tempstart <= -10 and tempstart >= -45)):
-    windchillout = windchillout + " <wcc windspeedmph=\""+str(getwuval['MPHRounded'])+"\" windspeedkhm=\""+str(getwuval['KMHRounded'])+"\" temperaturef=\""+str(gettuval['FahrenheitRounded'])+"\" temperaturec=\""+str(gettuval['CelsiusRounded'])+"\" temperaturer=\""+str(gettuval['RankineRounded'])+"\" temperaturek=\""+str(gettuval['KelvinRounded'])+"\" windchillf=\""+str(getwcval['FahrenheitRounded'])+"\" windchillc=\""+str(getwcval['CelsiusRounded'])+"\" windchillr=\""+str(getwcval['RankineRounded'])+"\" windchillk=\""+str(getwcval['KelvinRounded'])+"\" frostbitemin=\"5\" />\n";
+    windchillout = windchillout + " <wcc windspeedmph=\""+str(getwuval['MPHRounded'])+"\" windspeedkhm=\""+str(getwuval['KMHRounded'])+"\" temperaturef=\""+str(gettuval['FahrenheitRounded'])+"\" temperaturec=\""+str(gettuval['CelsiusRounded'])+"\" temperaturer=\""+str(gettuval['RankineRounded'])+"\" temperaturek=\""+str(gettuval['KelvinRounded'])+"\" windchillf=\""+str(getwcval['FahrenheitRounded'])+"\" windchillc=\""+str(getwcval['CelsiusRounded'])+"\" windchillr=\""+str(getwcval['RankineRounded'])+"\" windchillk=\""+str(getwcval['KelvinRounded'])+"\" frostbitelevel=\"3\" frostbitemin=\"5\" />\n";
    tempstart = tempstart - 5;
   windstart = windstart + 5;
  windchillout = windchillout + "</noaawcc>\n";
@@ -299,6 +300,8 @@ def WindChillGenXML(TempUnit = "Fahrenheit", WindUnit = "MPH", OutputFile = "-")
   wcof.write(windchillout);
   wcof.close();
  return windchillout;
+
+WindChillGenXML(OutputFile = "WindChillChart.xml");
 
 def WindChillGenXMLFahrenheitMPH(Temperature, WindSpeed):
  return WindChillGenXML("Fahrenheit", "MPH", OutputFile);
@@ -334,7 +337,7 @@ def HeatIndexByDewPoint(Temperature, DewPointTemp, TempUnit = "Fahrenheit"):
    hi = -42.379 + 2.04901523 * float(Temperature) + 10.14333127 * RHumidity2 - 0.22475541 * float(Temperature) * RHumidity2 - 6.83783 * (math.pow(10, -3)) * (math.pow(float(Temperature), 2)) - 5.481717 * (math.pow(10, -2)) * (math.pow(RHumidity2, 2)) + 1.22874 * (math.pow(10, -3)) * (math.pow(float(Temperature), 2)) * RHumidity2 + 8.5282 * (math.pow(10, -4)) * float(Temperature) * (math.pow(RHumidity2, 2)) - 1.99 * (math.pow(10, -6)) * (math.pow(float(Temperature), 2)) * (math.pow(RHumidity2,2));
    if((RHumidity2 <= 13.0) and (Temperature >= 80.0) and (Temperature <= 112.0)):
     adj1 = (13.0 - RHumidity2) / 4.0;
-    adj2 = math.sqrt((17.0 - math.abs(Temperature - 95.0)) / 17.0);
+    adj2 = math.sqrt((17.0 - abs(Temperature - 95.0)) / 17.0);
     adj = adj1 * adj2;
     hi = hi - adj;
    elif((RHumidity2 > 85.0) and (Temperature >= 80.0) and (Temperature <= 87.0)):
@@ -382,7 +385,7 @@ def HeatIndexByRelativeHumidity(Temperature, Humidity, TempUnit = "Fahrenheit"):
    hi = -42.379 + 2.04901523 * float(Temperature) + 10.14333127 * float(Humidity) - 0.22475541 * float(Temperature) * float(Humidity) - 6.83783 * (math.pow(10, -3)) * (math.pow(float(Temperature), 2)) - 5.481717 * (math.pow(10, -2)) * (math.pow(float(Humidity), 2))+1.22874 * (math.pow(10, -3)) * (math.pow(float(Temperature), 2)) * float(Humidity)+8.5282 * (math.pow(10, -4)) * float(Temperature) * (math.pow(float(Humidity), 2)) - 1.99 * (math.pow(10, -6)) * (math.pow(float(Temperature), 2)) * (math.pow(float(Humidity),2));
    if((float(Humidity) <= 13) and (float(Temperature) >= 80.0) and (float(Temperature) <= 112.0)):
     adj1 = (13.0 - float(Humidity)) / 4.0;
-    adj2 = math.sqrt((17.0 - math.abs(float(Temperature) - 95.0)) / 17.0);
+    adj2 = math.sqrt((17.0 - abs(float(Temperature) - 95.0)) / 17.0);
     adj = adj1 * adj2;
     hi = hi - adj;
    elif ((float(Humidity) > 85.0) and (float(Temperature) >= 80.0) and (float(Temperature) <= 87.0)):
@@ -413,6 +416,102 @@ def HeatIndexByRelativeHumidityFahrenheit(Temperature, Humidity):
 
 def HeatIndexByRelativeHumidityCelsius(Temperature, Humidity):
  return HeatIndexByRelativeHumidity(Temperature, Humidity, "Celsius");
+
+def HeatIndexByRelativeHumidityGenXML(TempUnit = "Fahrenheit", OutputFile = "-"):
+ TempUnit = TempUnit.capitalize();
+ mintemp = 80;
+ maxtemp = 110;
+ tempstart = 80;
+ minhumid = 40;
+ maxhumid = 100;
+ humidstart = 40;
+ humidityout = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE noaahic [\n<!ELEMENT noaahic (hic)*>\n<!ELEMENT hic EMPTY>\n<!ATTLIST hic temperaturef CDATA #IMPLIED>\n<!ATTLIST hic temperaturec CDATA #IMPLIED>\n<!ATTLIST hic temperaturer CDATA #IMPLIED>\n<!ATTLIST hic temperaturek CDATA #IMPLIED>\n<!ATTLIST hic humidity CDATA #IMPLIED>\n<!ATTLIST hic heatlevelnum CDATA #IMPLIED>\n<!ATTLIST hic heatlevel CDATA #IMPLIED>\n]>\n<noaahic>\n";
+ while(humidstart <= maxhumid):
+  tempstart = 80;
+  while(tempstart <= maxtemp):
+   getwcval = HeatIndexByRelativeHumidity(tempstart, humidstart, TempUnit);
+   if(TempUnit == "Fahrenheit"):
+    gettuval = ConvertTempUnits(tempstart, "Fahrenheit", "Celsius");
+   if(TempUnit == "Celsius"):
+    gettuval = ConvertTempUnits(tempstart, "Celsius", "Fahrenheit");
+   if((humidstart == 40 and tempstart >= 80 and tempstart <= 88) or 
+      (humidstart == 45 and tempstart >= 80 and tempstart <= 88) or 
+      (humidstart == 50 and tempstart >= 80 and tempstart <= 86) or 
+      (humidstart == 55 and tempstart >= 80 and tempstart <= 86) or 
+      (humidstart == 60 and tempstart >= 80 and tempstart <= 84) or 
+      (humidstart == 65 and tempstart >= 80 and tempstart <= 84) or 
+      (humidstart == 70 and tempstart >= 80 and tempstart <= 82) or 
+      (humidstart == 75 and tempstart >= 80 and tempstart <= 82) or 
+      (humidstart == 80 and tempstart >= 80 and tempstart <= 82) or 
+      (humidstart == 85 and tempstart >= 80 and tempstart <= 82) or 
+      (humidstart == 90 and tempstart >= 80 and tempstart <= 80) or 
+      (humidstart == 95 and tempstart >= 80 and tempstart <= 80) or 
+      (humidstart == 100 and tempstart >= 80 and tempstart <= 80)):
+    humidityout = humidityout + " <hic temperaturef=\""+str(gettuval['FahrenheitRounded'])+"\" temperaturec=\""+str(gettuval['CelsiusRounded'])+"\" temperaturer=\""+str(gettuval['RankineRounded'])+"\" temperaturek=\""+str(gettuval['KelvinRounded'])+"\" humidity=\""+str(humidstart)+"\" heatlevelnum=\"0\" heatlevel=\"Caution\" />\n";
+   if((humidstart == 40 and tempstart >= 90 and tempstart <= 96) or 
+      (humidstart == 45 and tempstart >= 90 and tempstart <= 94) or 
+      (humidstart == 50 and tempstart >= 88 and tempstart <= 94) or 
+      (humidstart == 55 and tempstart >= 88 and tempstart <= 92) or 
+      (humidstart == 60 and tempstart >= 86 and tempstart <= 90) or 
+      (humidstart == 65 and tempstart >= 86 and tempstart <= 90) or 
+      (humidstart == 70 and tempstart >= 86 and tempstart <= 88) or 
+      (humidstart == 75 and tempstart >= 84 and tempstart <= 86) or 
+      (humidstart == 80 and tempstart >= 84 and tempstart <= 86) or 
+      (humidstart == 85 and tempstart >= 84 and tempstart <= 86) or 
+      (humidstart == 90 and tempstart >= 82 and tempstart <= 84) or 
+      (humidstart == 95 and tempstart >= 82 and tempstart <= 84) or 
+      (humidstart == 100 and tempstart >= 82 and tempstart <= 84)):
+    humidityout = humidityout + " <hic temperaturef=\""+str(gettuval['FahrenheitRounded'])+"\" temperaturec=\""+str(gettuval['CelsiusRounded'])+"\" temperaturer=\""+str(gettuval['RankineRounded'])+"\" temperaturek=\""+str(gettuval['KelvinRounded'])+"\" humidity=\""+str(humidstart)+"\" heatlevelnum=\"1\" heatlevel=\"Extreme Caution\" />\n";
+   if((humidstart == 40 and tempstart >= 98 and tempstart <= 106) or 
+      (humidstart == 45 and tempstart >= 96 and tempstart <= 104) or 
+      (humidstart == 50 and tempstart >= 96 and tempstart <= 102) or 
+      (humidstart == 55 and tempstart >= 94 and tempstart <= 100) or 
+      (humidstart == 60 and tempstart >= 92 and tempstart <= 98) or 
+      (humidstart == 65 and tempstart >= 92 and tempstart <= 96) or 
+      (humidstart == 70 and tempstart >= 90 and tempstart <= 94) or 
+      (humidstart == 75 and tempstart >= 88 and tempstart <= 94) or 
+      (humidstart == 80 and tempstart >= 88 and tempstart <= 92) or 
+      (humidstart == 85 and tempstart >= 88 and tempstart <= 90) or 
+      (humidstart == 90 and tempstart >= 86 and tempstart <= 90) or 
+      (humidstart == 95 and tempstart >= 86 and tempstart <= 88) or 
+      (humidstart == 100 and tempstart >= 86 and tempstart <= 88)):
+    humidityout = humidityout + " <hic temperaturef=\""+str(gettuval['FahrenheitRounded'])+"\" temperaturec=\""+str(gettuval['CelsiusRounded'])+"\" temperaturer=\""+str(gettuval['RankineRounded'])+"\" temperaturek=\""+str(gettuval['KelvinRounded'])+"\" humidity=\""+str(humidstart)+"\" heatlevelnum=\"2\" heatlevel=\"Danger\" />\n";
+   if((humidstart == 40 and tempstart >= 108 and tempstart <= 110) or 
+      (humidstart == 45 and tempstart >= 106 and tempstart <= 108) or 
+      (humidstart == 50 and tempstart >= 104 and tempstart <= 106) or 
+      (humidstart == 55 and tempstart >= 102 and tempstart <= 104) or 
+      (humidstart == 60 and tempstart >= 100 and tempstart <= 102) or 
+      (humidstart == 65 and tempstart >= 98 and tempstart <= 100) or 
+      (humidstart == 70 and tempstart >= 96 and tempstart <= 98) or 
+      (humidstart == 75 and tempstart >= 96 and tempstart <= 96) or 
+      (humidstart == 80 and tempstart >= 94 and tempstart <= 94) or 
+      (humidstart == 85 and tempstart >= 92 and tempstart <= 94) or 
+      (humidstart == 90 and tempstart >= 92 and tempstart <= 92) or 
+      (humidstart == 95 and tempstart >= 90 and tempstart <= 90) or 
+      (humidstart == 100 and tempstart >= 90 and tempstart <= 90)):
+    humidityout = humidityout + " <hic temperaturef=\""+str(gettuval['FahrenheitRounded'])+"\" temperaturec=\""+str(gettuval['CelsiusRounded'])+"\" temperaturer=\""+str(gettuval['RankineRounded'])+"\" temperaturek=\""+str(gettuval['KelvinRounded'])+"\" humidity=\""+str(humidstart)+"\" heatlevelnum=\"3\" heatlevel=\"Extreme Danger\" />\n";
+   tempstart = tempstart + 2;
+  humidstart = humidstart + 5;
+ humidityout = humidityout + "</noaahic>\n";
+ if(OutputFile!="-"):
+  wcof = open(OutputFile, 'w');
+  wcof.write(humidityout);
+  wcof.close();
+ return humidityout;
+
+HeatIndexByRelativeHumidityGenXML(OutputFile = "HeatIndexChart.xml");
+
+def HeatIndexByRelativeHumidityGenXMLFahrenheitMPH(Temperature, WindSpeed):
+ return HeatIndexByRelativeHumidityGenXML("Fahrenheit", "MPH", OutputFile);
+
+def HeatIndexByRelativeHumidityGenXMLFahrenheitKMH(Temperature, WindSpeed):
+ return HeatIndexByRelativeHumidityGenXML("Fahrenheit", "KMH", OutputFile);
+
+def HeatIndexByRelativeHumidityGenXMLCelsiusKMH(Temperature, WindSpeed):
+ return HeatIndexByRelativeHumidityGenXML("Celsius", "KMH", OutputFile);
+
+def HeatIndexByRelativeHumidityGenXMLCelsiusMPH(Temperature, WindSpeed):
+ return HeatIndexByRelativeHumidityGenXML("Celsius", "MPH", OutputFile);
 
 def RelativeHumidity(Temperature, DewPointTemp, TempUnit = "Fahrenheit"):
  TempUnit = TempUnit.capitalize();
