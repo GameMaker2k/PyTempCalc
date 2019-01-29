@@ -10,10 +10,10 @@
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     Revised BSD License for more details.
 
-    Copyright 2016 Game Maker 2k - https://github.com/GameMaker2k
-    Copyright 2016 Joshua Przyborowski - https://github.com/JoshuaPrzyborowski
+    Copyright 2016-2019 Game Maker 2k - https://github.com/GameMaker2k
+    Copyright 2016-2019 Joshua Przyborowski - https://github.com/JoshuaPrzyborowski
 
-    $FileInfo: pytempcalc.py - Last Update: 12/18/2016 Ver. 0.3.5 RC 1 - Author: joshuatp $
+    $FileInfo: pytempcalc.py - Last Update: 1/29/2019 Ver. 0.4.0 RC 1 - Author: joshuatp $
 '''
 
 # http://www.nws.noaa.gov/om/winter/windchill.shtml
@@ -26,8 +26,8 @@ import math;
 __program_name__ = "PyTempCalc";
 __project__ = __program_name__;
 __project_url__ = "https://gist.github.com/JoshuaPrzyborowski";
-__version_info__ = (0, 3, 5, "RC 1", 1);
-__version_date_info__ = (2016, 12, 18, "RC 1", 1);
+__version_info__ = (0, 4, 0, "RC 1", 1);
+__version_date_info__ = (2019, 1, 29, "RC 1", 1);
 __version_date__ = str(__version_date_info__[0])+"."+str(__version_date_info__[1]).zfill(2)+"."+str(__version_date_info__[2]).zfill(2);
 if(__version_info__[4]!=None):
  __version_date_plusrc__ = __version_date__+"-"+str(__version_date_info__[4]);
@@ -57,14 +57,26 @@ def ConvertTempUnits(Temperature, InTempUnit = "Fahrenheit", OutTempUnit = "Cels
   'Celsius': "{:0.2f}".format(float(retvaltmp)), 
   'Rankine': "{:0.2f}".format(float(Temperature) + float(273.15)), 
   'Kelvin': "{:0.2f}".format(float(retvaltmp) + float(273.15)), 
+  'Delisle': "{:0.2f}".format(((float(Temperature) - 212) * 5) / 6), 
+  'Newton': "{:0.2f}".format(((float(Temperature) - 32) * 11) / 60), 
+  'Reaumur': "{:0.2f}".format(((float(Temperature) - 32) * 4) / 9), 
+  'Romer': "{:0.2f}".format((((float(Temperature) - 32) * 7) / 24) + 7.5), 
   'FahrenheitFull': float(Temperature), 
   'CelsiusFull': float(retvaltmp), 
   'RankineFull': float(Temperature) + float(273.15), 
   'KelvinFull': float(retvaltmp) + float(273.15), 
+  'DelisleFull': float(((float(Temperature) - 212) * 5) / 6), 
+  'NewtonFull': float(((float(Temperature) - 32) * 11) / 60), 
+  'ReaumurFull': float(((float(Temperature) - 32) * 4) / 9), 
+  'RomerFull': float((((float(Temperature) - 32) * 7) / 24) + 7.5), 
   'FahrenheitRounded': RoundToInt(float(Temperature)), 
   'CelsiusRounded': RoundToInt(float(retvaltmp)), 
   'RankineRounded': RoundToInt(float(Temperature) + float(273.15)), 
-  'KelvinRounded': RoundToInt(float(retvaltmp) + float(273.15))
+  'KelvinRounded': RoundToInt(float(retvaltmp) + float(273.15)), 
+  'DelisleRounded': RoundToInt(float(((float(Temperature) - 212) * 5) / 6)), 
+  'NewtonRounded': RoundToInt(float(((float(Temperature) - 32) * 11) / 60)), 
+  'ReaumurRounded': RoundToInt(float(((float(Temperature) - 32) * 4) / 9)), 
+  'RomerRounded': RoundToInt(float((((float(Temperature) - 32) * 7) / 24) + 7.5))
   });
  elif(InTempUnit == "Celsius" and OutTempUnit == "Fahrenheit"):
   # retvaltmp = float(5.0 * 9.0) / (float(Temperature) - 32.0);
@@ -74,14 +86,26 @@ def ConvertTempUnits(Temperature, InTempUnit = "Fahrenheit", OutTempUnit = "Cels
   'Celsius': "{:0.2f}".format(float(Temperature)), 
   'Rankine': "{:0.2f}".format(float(retvaltmp) + float(273.15)), 
   'Kelvin': "{:0.2f}".format(float(Temperature) + float(273.15)), 
+  'Delisle': "{:0.2f}".format(((float(Temperature) - 100) * 3) / 2), 
+  'Newton': "{:0.2f}".format((float(Temperature) * 3) / 2), 
+  'Reaumur': "{:0.2f}".format((float(Temperature) * 4) / 5), 
+  'Romer': "{:0.2f}".format(float(((float(Temperature) * 21) / 40) + 7.5)), 
   'FahrenheitFull': float(retvaltmp), 
   'CelsiusFull': float(Temperature), 
   'RankineFull': float(retvaltmp) + float(273.15), 
   'KelvinFull': float(Temperature) + float(273.15), 
+  'DelisleFull': float(((float(Temperature) - 100) * 3) / 2), 
+  'NewtonFull': float((float(Temperature) * 3) / 2), 
+  'ReaumurFull': float((float(Temperature) * 4) / 5), 
+  'RomerFull': float(((float(Temperature) * 21) / 40) + 7.5), 
   'FahrenheitRounded': RoundToInt(float(retvaltmp)), 
   'CelsiusRounded': RoundToInt(float(Temperature)), 
   'RankineRounded': RoundToInt(float(retvaltmp) + float(273.15)), 
-  'KelvinRounded': RoundToInt(float(Temperature) + float(273.15))
+  'KelvinRounded': RoundToInt(float(Temperature) + float(273.15)), 
+  'DelisleRounded': RoundToInt(float(((float(Temperature) - 100) * 3) / 2)), 
+  'NewtonRounded': RoundToInt(float((float(Temperature) * 3) / 2)), 
+  'ReaumurRounded': RoundToInt(float((float(Temperature) * 4) / 5)), 
+  'RomerRounded': RoundToInt(float(((float(Temperature) * 21) / 40) + 7.5))
   });
  else:
   return False;
@@ -144,16 +168,28 @@ def WindChill(Temperature, WindSpeed, TempUnit = "Fahrenheit", WindUnit = "MPH")
   windchillret.update({
   'Fahrenheit': "{:0.2f}".format(float(windchill)), 
   'Celsius': "{:0.2f}".format(float(ConvertTempUnits(float(windchill), "Fahrenheit", "Celsius")['CelsiusFull'])), 
-  'Rankine': "{:0.2f}".format(float(windchill) + float(273.15)), 
+  'Rankine': "{:0.2f}".format(float(ConvertTempUnits(float(windchill), "Fahrenheit", "Celsius")['RankineFull'])), 
   'Kelvin': "{:0.2f}".format(float(ConvertTempUnits(float(windchill), "Fahrenheit", "Celsius")['KelvinFull'])), 
+  'Delisle': "{:0.2f}".format(float(ConvertTempUnits(float(windchill), "Fahrenheit", "Celsius")['DelisleFull'])), 
+  'Newton': "{:0.2f}".format(float(ConvertTempUnits(float(windchill), "Fahrenheit", "Celsius")['NewtonFull'])), 
+  'Reaumur': "{:0.2f}".format(float(ConvertTempUnits(float(windchill), "Fahrenheit", "Celsius")['ReaumurFull'])), 
+  'Romer': "{:0.2f}".format(float(ConvertTempUnits(float(windchill), "Fahrenheit", "Celsius")['RomerFull'])), 
   'FahrenheitFull': float(windchill), 
   'CelsiusFull': float(ConvertTempUnits(float(windchill), "Fahrenheit", "Celsius")['CelsiusFull']), 
-  'RankineFull': float(windchill) + float(273.15), 
+  'RankineFull': float(ConvertTempUnits(float(windchill), "Fahrenheit", "Celsius")['RankineFull']), 
   'KelvinFull': float(ConvertTempUnits(float(windchill), "Fahrenheit", "Celsius")['KelvinFull']), 
+  'DelisleFull': float(ConvertTempUnits(float(windchill), "Fahrenheit", "Celsius")['DelisleFull']), 
+  'NewtonFull': float(ConvertTempUnits(float(windchill), "Fahrenheit", "Celsius")['NewtonFull']), 
+  'ReaumurFull': float(ConvertTempUnits(float(windchill), "Fahrenheit", "Celsius")['ReaumurFull']), 
+  'RomerFull': float(ConvertTempUnits(float(windchill), "Fahrenheit", "Celsius")['RomerFull']), 
   'FahrenheitRounded': RoundToInt(float(windchill)), 
   'CelsiusRounded': RoundToInt(ConvertTempUnits(float(windchill), "Fahrenheit", "Celsius")['CelsiusFull']), 
-  'RankineRounded': RoundToInt(float(windchill) + float(273.15)), 
-  'KelvinRounded': RoundToInt(ConvertTempUnits(float(windchill), "Fahrenheit", "Celsius")['KelvinFull'])
+  'RankineRounded': RoundToInt(ConvertTempUnits(float(windchill), "Fahrenheit", "Celsius")['RankineFull']), 
+  'KelvinRounded': RoundToInt(ConvertTempUnits(float(windchill), "Fahrenheit", "Celsius")['KelvinFull']), 
+  'DelisleRounded': RoundToInt(ConvertTempUnits(float(windchill), "Fahrenheit", "Celsius")['DelisleFull']), 
+  'NewtonRounded': RoundToInt(ConvertTempUnits(float(windchill), "Fahrenheit", "Celsius")['NewtonFull']), 
+  'ReaumurRounded': RoundToInt(ConvertTempUnits(float(windchill), "Fahrenheit", "Celsius")['ReaumurFull']), 
+  'RomerRounded': RoundToInt(ConvertTempUnits(float(windchill), "Fahrenheit", "Celsius")['RomerFull'])
   });
  if(TempUnit == "Fahrenheit" and WindUnit == "KMH"):
   WindSpeed = 0.621371 * float(WindSpeed);
@@ -161,16 +197,28 @@ def WindChill(Temperature, WindSpeed, TempUnit = "Fahrenheit", WindUnit = "MPH")
   windchillret.update({
   'Fahrenheit': "{:0.2f}".format(float(windchill)), 
   'Celsius': "{:0.2f}".format(float(ConvertTempUnits(float(windchill), "Fahrenheit", "Celsius")['CelsiusFull'])), 
-  'Rankine': "{:0.2f}".format(float(windchill) + float(273.15)), 
+  'Rankine': "{:0.2f}".format(float(ConvertTempUnits(float(windchill), "Fahrenheit", "Celsius")['RankineFull'])), 
   'Kelvin': "{:0.2f}".format(float(ConvertTempUnits(float(windchill), "Fahrenheit", "Celsius")['KelvinFull'])), 
+  'Delisle': "{:0.2f}".format(float(ConvertTempUnits(float(windchill), "Fahrenheit", "Celsius")['DelisleFull'])), 
+  'Newton': "{:0.2f}".format(float(ConvertTempUnits(float(windchill), "Fahrenheit", "Celsius")['NewtonFull'])), 
+  'Reaumur': "{:0.2f}".format(float(ConvertTempUnits(float(windchill), "Fahrenheit", "Celsius")['ReaumurFull'])), 
+  'Romer': "{:0.2f}".format(float(ConvertTempUnits(float(windchill), "Fahrenheit", "Celsius")['RomerFull'])), 
   'FahrenheitFull': float(windchill), 
   'CelsiusFull': float(ConvertTempUnits(float(windchill), "Fahrenheit", "Celsius")['CelsiusFull']), 
-  'RankineFull': float(windchill) + float(273.15), 
+  'RankineFull': float(ConvertTempUnits(float(windchill), "Fahrenheit", "Celsius")['RankineFull']), 
   'KelvinFull': float(ConvertTempUnits(float(windchill), "Fahrenheit", "Celsius")['KelvinFull']), 
+  'DelisleFull': float(ConvertTempUnits(float(windchill), "Fahrenheit", "Celsius")['DelisleFull']), 
+  'NewtonFull': float(ConvertTempUnits(float(windchill), "Fahrenheit", "Celsius")['NewtonFull']), 
+  'ReaumurFull': float(ConvertTempUnits(float(windchill), "Fahrenheit", "Celsius")['ReaumurFull']), 
+  'RomerFull': float(ConvertTempUnits(float(windchill), "Fahrenheit", "Celsius")['RomerFull']), 
   'FahrenheitRounded': RoundToInt(float(windchill)), 
   'CelsiusRounded': RoundToInt(ConvertTempUnits(float(windchill), "Fahrenheit", "Celsius")['CelsiusFull']), 
-  'RankineRounded': RoundToInt(float(windchill) + float(273.15)), 
-  'KelvinRounded': RoundToInt(ConvertTempUnits(float(windchill), "Fahrenheit", "Celsius")['KelvinFull'])
+  'RankineRounded': RoundToInt(ConvertTempUnits(float(windchill), "Fahrenheit", "Celsius")['RankineFull']), 
+  'KelvinRounded': RoundToInt(ConvertTempUnits(float(windchill), "Fahrenheit", "Celsius")['KelvinFull']), 
+  'DelisleRounded': RoundToInt(ConvertTempUnits(float(windchill), "Fahrenheit", "Celsius")['DelisleFull']), 
+  'NewtonRounded': RoundToInt(ConvertTempUnits(float(windchill), "Fahrenheit", "Celsius")['NewtonFull']), 
+  'ReaumurRounded': RoundToInt(ConvertTempUnits(float(windchill), "Fahrenheit", "Celsius")['ReaumurFull']), 
+  'RomerRounded': RoundToInt(ConvertTempUnits(float(windchill), "Fahrenheit", "Celsius")['RomerFull'])
   });
  if(TempUnit == "Celsius" and WindUnit == "KMH"):
   windchill = float(13.12 + 0.6215 * float(Temperature) - 11.37 * math.pow(float(WindSpeed), 0.16) + 0.3965 * float(Temperature) * math.pow(float(WindSpeed), 0.16));
@@ -178,15 +226,27 @@ def WindChill(Temperature, WindSpeed, TempUnit = "Fahrenheit", WindUnit = "MPH")
   'Celsius': "{:0.2f}".format(float(windchill)), 
   'Fahrenheit': "{:0.2f}".format(float(ConvertTempUnits(float(windchill), "Celsius", "Fahrenheit")['FahrenheitFull'])), 
   'Rankine': "{:0.2f}".format(float(ConvertTempUnits(float(windchill), "Celsius", "Fahrenheit")['RankineFull'])), 
-  'Kelvin': "{:0.2f}".format(float(windchill) + float(273.15)), 
+  'Kelvin': "{:0.2f}".format(float(ConvertTempUnits(float(windchill), "Celsius", "Fahrenheit")['KelvinFull'])), 
+  'Delisle': "{:0.2f}".format(float(ConvertTempUnits(float(windchill), "Celsius", "Fahrenheit")['DelisleFull'])), 
+  'Newton': "{:0.2f}".format(float(ConvertTempUnits(float(windchill), "Celsius", "Fahrenheit")['NewtonFull'])), 
+  'Reaumur': "{:0.2f}".format(float(ConvertTempUnits(float(windchill), "Celsius", "Fahrenheit")['ReaumurFull'])), 
+  'Romer': "{:0.2f}".format(float(ConvertTempUnits(float(windchill), "Celsius", "Fahrenheit")['RomerFull'])), 
   'CelsiusFull': float(windchill), 
   'FahrenheitFull': float(ConvertTempUnits(float(windchill), "Celsius", "Fahrenheit")['FahrenheitFull']), 
   'RankineFull': float(ConvertTempUnits(float(windchill), "Celsius", "Fahrenheit")['RankineFull']), 
-  'KelvinFull': float(windchill) + float(273.15), 
+  'KelvinFull': float(ConvertTempUnits(float(windchill), "Celsius", "Fahrenheit")['KelvinFull']), 
+  'DelisleFull': float(ConvertTempUnits(float(windchill), "Celsius", "Fahrenheit")['DelisleFull']), 
+  'NewtonFull': float(ConvertTempUnits(float(windchill), "Celsius", "Fahrenheit")['NewtonFull']), 
+  'ReaumurFull': float(ConvertTempUnits(float(windchill), "Celsius", "Fahrenheit")['ReaumurFull']), 
+  'RomerFull': float(ConvertTempUnits(float(windchill), "Celsius", "Fahrenheit")['RomerFull']), 
   'CelsiusRounded': RoundToInt(float(windchill)), 
   'FahrenheitRounded': RoundToInt(ConvertTempUnits(float(windchill)), "Celsius", "Fahrenheit")['FahrenheitFull'], 
-  'RankineRounded': RoundToInt(ConvertTempUnits(float(windchill)), "Celsius", "Fahrenheit")['RankineFull'], 
-  'KelvinRounded': RoundToInt(float(windchill) + float(273.15))
+  'RankineRounded': RoundToInt(ConvertTempUnits(float(windchill), "Celsius", "Fahrenheit")['RankineFull']), 
+  'KelvinRounded': RoundToInt(ConvertTempUnits(float(windchill), "Celsius", "Fahrenheit")['KelvinFull']), 
+  'DelisleRounded': RoundToInt(ConvertTempUnits(float(windchill), "Celsius", "Fahrenheit")['DelisleFull']), 
+  'NewtonRounded': RoundToInt(ConvertTempUnits(float(windchill), "Celsius", "Fahrenheit")['NewtonFull']), 
+  'ReaumurRounded': RoundToInt(ConvertTempUnits(float(windchill), "Celsius", "Fahrenheit")['ReaumurFull']), 
+  'RomerRounded': RoundToInt(ConvertTempUnits(float(windchill), "Celsius", "Fahrenheit")['RomerFull'])
   });
  if(TempUnit == "Celsius" and WindUnit == "MPH"):
   WindSpeed = 1.609344 * float(WindSpeed);
@@ -195,15 +255,27 @@ def WindChill(Temperature, WindSpeed, TempUnit = "Fahrenheit", WindUnit = "MPH")
   'Celsius': "{:0.2f}".format(float(windchill)), 
   'Fahrenheit': "{:0.2f}".format(float(ConvertTempUnits(float(windchill), "Celsius", "Fahrenheit")['FahrenheitFull'])), 
   'Rankine': "{:0.2f}".format(float(ConvertTempUnits(float(windchill), "Celsius", "Fahrenheit")['RankineFull'])), 
-  'Kelvin': "{:0.2f}".format(float(windchill) + float(273.15)), 
+  'Kelvin': "{:0.2f}".format(float(ConvertTempUnits(float(windchill), "Celsius", "Fahrenheit")['KelvinFull'])), 
+  'Delisle': "{:0.2f}".format(float(ConvertTempUnits(float(windchill), "Celsius", "Fahrenheit")['DelisleFull'])), 
+  'Newton': "{:0.2f}".format(float(ConvertTempUnits(float(windchill), "Celsius", "Fahrenheit")['NewtonFull'])), 
+  'Reaumur': "{:0.2f}".format(float(ConvertTempUnits(float(windchill), "Celsius", "Fahrenheit")['ReaumurFull'])), 
+  'Romer': "{:0.2f}".format(float(ConvertTempUnits(float(windchill), "Celsius", "Fahrenheit")['RomerFull'])), 
   'CelsiusFull': float(windchill), 
   'FahrenheitFull': float(ConvertTempUnits(float(windchill), "Celsius", "Fahrenheit")['FahrenheitFull']), 
   'RankineFull': float(ConvertTempUnits(float(windchill), "Celsius", "Fahrenheit")['RankineFull']), 
-  'KelvinFull': float(windchill) + float(273.15), 
+  'KelvinFull': float(ConvertTempUnits(float(windchill), "Celsius", "Fahrenheit")['KelvinFull']), 
+  'DelisleFull': float(ConvertTempUnits(float(windchill), "Celsius", "Fahrenheit")['DelisleFull']), 
+  'NewtonFull': float(ConvertTempUnits(float(windchill), "Celsius", "Fahrenheit")['NewtonFull']), 
+  'ReaumurFull': float(ConvertTempUnits(float(windchill), "Celsius", "Fahrenheit")['ReaumurFull']), 
+  'RomerFull': float(ConvertTempUnits(float(windchill), "Celsius", "Fahrenheit")['RomerFull']), 
   'CelsiusRounded': RoundToInt(float(windchill)), 
   'FahrenheitRounded': RoundToInt(ConvertTempUnits(float(windchill), "Celsius", "Fahrenheit")['FahrenheitFull']), 
-  'RankineRounded': RoundToInt(ConvertTempUnits(float(windchill)), "Celsius", "Fahrenheit")['RankineFull'], 
-  'KelvinRounded': RoundToInt(float(windchill) + float(273.15))
+  'RankineRounded': RoundToInt(ConvertTempUnits(float(windchill), "Celsius", "Fahrenheit")['RankineFull']), 
+  'KelvinRounded': RoundToInt(ConvertTempUnits(float(windchill), "Celsius", "Fahrenheit")['KelvinFull']), 
+  'DelisleRounded': RoundToInt(ConvertTempUnits(float(windchill), "Celsius", "Fahrenheit")['DelisleFull']), 
+  'NewtonRounded': RoundToInt(ConvertTempUnits(float(windchill), "Celsius", "Fahrenheit")['NewtonFull']), 
+  'ReaumurRounded': RoundToInt(ConvertTempUnits(float(windchill), "Celsius", "Fahrenheit")['ReaumurFull']), 
+  'RomerRounded': RoundToInt(ConvertTempUnits(float(windchill), "Celsius", "Fahrenheit")['RomerFull'])
   });
  return windchillret;
 
@@ -228,7 +300,7 @@ def WindChillGenXML(TempUnit = "Fahrenheit", WindUnit = "MPH", OutputFile = "-")
  minwind = 5;
  maxwind = 60;
  windstart = 5;
- windchillout = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE noaawcc [\n<!ELEMENT noaawcc (wcc)*>\n<!ELEMENT wcc EMPTY>\n<!ATTLIST wcc windspeedmph CDATA #REQUIRED>\n<!ATTLIST wcc windspeedkhm CDATA #REQUIRED>\n<!ATTLIST wcc temperaturef CDATA #IMPLIED>\n<!ATTLIST wcc temperaturec CDATA #IMPLIED>\n<!ATTLIST wcc temperaturer CDATA #IMPLIED>\n<!ATTLIST wcc temperaturek CDATA #IMPLIED>\n<!ATTLIST wcc windchillf CDATA #IMPLIED>\n<!ATTLIST wcc windchillc CDATA #IMPLIED>\n<!ATTLIST wcc windchillr CDATA #IMPLIED>\n<!ATTLIST wcc windchillk CDATA #IMPLIED>\n<!ATTLIST wcc frostbitelevel CDATA #IMPLIED>\n<!ATTLIST wcc frostbitemin CDATA #IMPLIED>\n]>\n<noaawcc>\n";
+ windchillout = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE noaawcc [\n<!ELEMENT noaawcc (wcc)*>\n<!ELEMENT wcc EMPTY>\n<!ATTLIST wcc windspeedmph CDATA #REQUIRED>\n<!ATTLIST wcc windspeedkhm CDATA #REQUIRED>\n<!ATTLIST wcc temperaturef CDATA #IMPLIED>\n<!ATTLIST wcc temperaturec CDATA #IMPLIED>\n<!ATTLIST wcc temperaturer CDATA #IMPLIED>\n<!ATTLIST wcc temperaturek CDATA #IMPLIED>\n<!ATTLIST wcc temperatured CDATA #IMPLIED>\n<!ATTLIST wcc temperaturen CDATA #IMPLIED>\n<!ATTLIST wcc temperaturere CDATA #IMPLIED>\n<!ATTLIST wcc temperaturero CDATA #IMPLIED>\n<!ATTLIST wcc windchillf CDATA #IMPLIED>\n<!ATTLIST wcc windchillc CDATA #IMPLIED>\n<!ATTLIST wcc windchillr CDATA #IMPLIED>\n<!ATTLIST wcc windchillk CDATA #IMPLIED>\n<!ATTLIST wcc windchilld CDATA #IMPLIED>\n<!ATTLIST wcc windchilln CDATA #IMPLIED>\n<!ATTLIST wcc windchillre CDATA #IMPLIED>\n<!ATTLIST wcc windchillro CDATA #IMPLIED>\n<!ATTLIST wcc frostbitelevel CDATA #IMPLIED>\n<!ATTLIST wcc frostbitemin CDATA #IMPLIED>\n]>\n<noaawcc>\n";
  while(windstart <= maxwind):
   tempstart = 40;
   while(tempstart >= mintemp):
@@ -254,7 +326,7 @@ def WindChillGenXML(TempUnit = "Fahrenheit", WindUnit = "MPH", OutputFile = "-")
       (windstart == 50 and tempstart <= 40 and tempstart >= 10) or 
       (windstart == 55 and tempstart <= 40 and tempstart >= 15) or 
       (windstart == 60 and tempstart <= 40 and tempstart >= 15)):
-    windchillout = windchillout + " <wcc windspeedmph=\""+str(getwuval['MPHRounded'])+"\" windspeedkhm=\""+str(getwuval['KMHRounded'])+"\" temperaturef=\""+str(gettuval['FahrenheitRounded'])+"\" temperaturec=\""+str(gettuval['CelsiusRounded'])+"\" temperaturer=\""+str(gettuval['RankineRounded'])+"\" temperaturek=\""+str(gettuval['KelvinRounded'])+"\" windchillf=\""+str(getwcval['FahrenheitRounded'])+"\" windchillc=\""+str(getwcval['CelsiusRounded'])+"\" windchillr=\""+str(getwcval['RankineRounded'])+"\" windchillk=\""+str(getwcval['KelvinRounded'])+"\" frostbitelevel=\"0\" frostbitemin=\"-1\" />\n";
+    windchillout = windchillout + " <wcc windspeedmph=\""+str(getwuval['MPHRounded'])+"\" windspeedkhm=\""+str(getwuval['KMHRounded'])+"\" temperaturef=\""+str(gettuval['FahrenheitRounded'])+"\" temperaturec=\""+str(gettuval['CelsiusRounded'])+"\" temperaturer=\""+str(gettuval['RankineRounded'])+"\" temperaturek=\""+str(gettuval['KelvinRounded'])+"\" temperatured=\""+str(gettuval['DelisleRounded'])+"\" temperaturen=\""+str(gettuval['NewtonRounded'])+"\" temperaturere=\""+str(gettuval['ReaumurRounded'])+"\" temperaturero=\""+str(gettuval['RomerRounded'])+"\" windchillf=\""+str(getwcval['FahrenheitRounded'])+"\" windchillc=\""+str(getwcval['CelsiusRounded'])+"\" windchillr=\""+str(getwcval['RankineRounded'])+"\" windchillk=\""+str(getwcval['KelvinRounded'])+"\" windchilld=\""+str(getwcval['DelisleRounded'])+"\" windchilln=\""+str(getwcval['NewtonRounded'])+"\" windchillre=\""+str(getwcval['ReaumurRounded'])+"\" windchillro=\""+str(getwcval['RomerRounded'])+"\" frostbitelevel=\"0\" frostbitemin=\"-1\" />\n";
    if((windstart == 5 and tempstart <= -10 and tempstart >= -35) or 
       (windstart == 10 and tempstart <= -5 and tempstart >= -20) or 
       (windstart == 15 and tempstart <= 0 and tempstart >= -15) or 
@@ -267,7 +339,7 @@ def WindChillGenXML(TempUnit = "Fahrenheit", WindUnit = "MPH", OutputFile = "-")
       (windstart == 50 and tempstart <= 5 and tempstart >= 0) or 
       (windstart == 55 and tempstart <= 10 and tempstart >= 5) or 
       (windstart == 60 and tempstart <= 10 and tempstart >= 5)):
-    windchillout = windchillout + " <wcc windspeedmph=\""+str(getwuval['MPHRounded'])+"\" windspeedkhm=\""+str(getwuval['KMHRounded'])+"\" temperaturef=\""+str(gettuval['FahrenheitRounded'])+"\" temperaturec=\""+str(gettuval['CelsiusRounded'])+"\" temperaturer=\""+str(gettuval['RankineRounded'])+"\" temperaturek=\""+str(gettuval['KelvinRounded'])+"\" windchillf=\""+str(getwcval['FahrenheitRounded'])+"\" windchillc=\""+str(getwcval['CelsiusRounded'])+"\" windchillr=\""+str(getwcval['RankineRounded'])+"\" windchillk=\""+str(getwcval['KelvinRounded'])+"\" frostbitelevel=\"1\" frostbitemin=\"30\" />\n";
+    windchillout = windchillout + " <wcc windspeedmph=\""+str(getwuval['MPHRounded'])+"\" windspeedkhm=\""+str(getwuval['KMHRounded'])+"\" temperaturef=\""+str(gettuval['FahrenheitRounded'])+"\" temperaturec=\""+str(gettuval['CelsiusRounded'])+"\" temperaturer=\""+str(gettuval['RankineRounded'])+"\" temperaturek=\""+str(gettuval['KelvinRounded'])+"\" temperatured=\""+str(gettuval['DelisleRounded'])+"\" temperaturen=\""+str(gettuval['NewtonRounded'])+"\" temperaturere=\""+str(gettuval['ReaumurRounded'])+"\" temperaturero=\""+str(gettuval['RomerRounded'])+"\" windchillf=\""+str(getwcval['FahrenheitRounded'])+"\" windchillc=\""+str(getwcval['CelsiusRounded'])+"\" windchillr=\""+str(getwcval['RankineRounded'])+"\" windchillk=\""+str(getwcval['KelvinRounded'])+"\" windchilld=\""+str(getwcval['DelisleRounded'])+"\" windchilln=\""+str(getwcval['NewtonRounded'])+"\" windchillre=\""+str(getwcval['ReaumurRounded'])+"\" windchillro=\""+str(getwcval['RomerRounded'])+"\" frostbitelevel=\"1\" frostbitemin=\"30\" />\n";
    if((windstart == 5 and tempstart <= -40 and tempstart >= -45) or 
       (windstart == 10 and tempstart <= -25 and tempstart >= -45) or 
       (windstart == 15 and tempstart <= -20 and tempstart >= -35) or 
@@ -280,7 +352,7 @@ def WindChillGenXML(TempUnit = "Fahrenheit", WindUnit = "MPH", OutputFile = "-")
       (windstart == 50 and tempstart <= -5 and tempstart >= -10) or 
       (windstart == 55 and tempstart <= 0 and tempstart >= -10) or 
       (windstart == 60 and tempstart <= 0 and tempstart >= 0)):
-    windchillout = windchillout + " <wcc windspeedmph=\""+str(getwuval['MPHRounded'])+"\" windspeedkhm=\""+str(getwuval['KMHRounded'])+"\" temperaturef=\""+str(gettuval['FahrenheitRounded'])+"\" temperaturec=\""+str(gettuval['CelsiusRounded'])+"\" temperaturer=\""+str(gettuval['RankineRounded'])+"\" temperaturek=\""+str(gettuval['KelvinRounded'])+"\" windchillf=\""+str(getwcval['FahrenheitRounded'])+"\" windchillc=\""+str(getwcval['CelsiusRounded'])+"\" windchillr=\""+str(getwcval['RankineRounded'])+"\" windchillk=\""+str(getwcval['KelvinRounded'])+"\" frostbitelevel=\"2\" frostbitemin=\"10\" />\n";
+    windchillout = windchillout + " <wcc windspeedmph=\""+str(getwuval['MPHRounded'])+"\" windspeedkhm=\""+str(getwuval['KMHRounded'])+"\" temperaturef=\""+str(gettuval['FahrenheitRounded'])+"\" temperaturec=\""+str(gettuval['CelsiusRounded'])+"\" temperaturer=\""+str(gettuval['RankineRounded'])+"\" temperaturek=\""+str(gettuval['KelvinRounded'])+"\" temperatured=\""+str(gettuval['DelisleRounded'])+"\" temperaturen=\""+str(gettuval['NewtonRounded'])+"\" temperaturere=\""+str(gettuval['ReaumurRounded'])+"\" temperaturero=\""+str(gettuval['RomerRounded'])+"\" windchillf=\""+str(getwcval['FahrenheitRounded'])+"\" windchillc=\""+str(getwcval['CelsiusRounded'])+"\" windchillr=\""+str(getwcval['RankineRounded'])+"\" windchillk=\""+str(getwcval['KelvinRounded'])+"\" windchilld=\""+str(getwcval['DelisleRounded'])+"\" windchilln=\""+str(getwcval['NewtonRounded'])+"\" windchillre=\""+str(getwcval['ReaumurRounded'])+"\" windchillro=\""+str(getwcval['RomerRounded'])+"\" frostbitelevel=\"2\" frostbitemin=\"10\" />\n";
    if((windstart == 15 and tempstart <= -40 and tempstart >= -45) or 
       (windstart == 20 and tempstart <= -35 and tempstart >= -45) or 
       (windstart == 25 and tempstart <= -30 and tempstart >= -45) or 
@@ -291,7 +363,7 @@ def WindChillGenXML(TempUnit = "Fahrenheit", WindUnit = "MPH", OutputFile = "-")
       (windstart == 50 and tempstart <= -15 and tempstart >= -45) or 
       (windstart == 55 and tempstart <= -15 and tempstart >= -45) or 
       (windstart == 60 and tempstart <= -10 and tempstart >= -45)):
-    windchillout = windchillout + " <wcc windspeedmph=\""+str(getwuval['MPHRounded'])+"\" windspeedkhm=\""+str(getwuval['KMHRounded'])+"\" temperaturef=\""+str(gettuval['FahrenheitRounded'])+"\" temperaturec=\""+str(gettuval['CelsiusRounded'])+"\" temperaturer=\""+str(gettuval['RankineRounded'])+"\" temperaturek=\""+str(gettuval['KelvinRounded'])+"\" windchillf=\""+str(getwcval['FahrenheitRounded'])+"\" windchillc=\""+str(getwcval['CelsiusRounded'])+"\" windchillr=\""+str(getwcval['RankineRounded'])+"\" windchillk=\""+str(getwcval['KelvinRounded'])+"\" frostbitelevel=\"3\" frostbitemin=\"5\" />\n";
+    windchillout = windchillout + " <wcc windspeedmph=\""+str(getwuval['MPHRounded'])+"\" windspeedkhm=\""+str(getwuval['KMHRounded'])+"\" temperaturef=\""+str(gettuval['FahrenheitRounded'])+"\" temperaturec=\""+str(gettuval['CelsiusRounded'])+"\" temperaturer=\""+str(gettuval['RankineRounded'])+"\" temperaturek=\""+str(gettuval['KelvinRounded'])+"\" temperatured=\""+str(gettuval['DelisleRounded'])+"\" temperaturen=\""+str(gettuval['NewtonRounded'])+"\" temperaturere=\""+str(gettuval['ReaumurRounded'])+"\" temperaturero=\""+str(gettuval['RomerRounded'])+"\" windchillf=\""+str(getwcval['FahrenheitRounded'])+"\" windchillc=\""+str(getwcval['CelsiusRounded'])+"\" windchillr=\""+str(getwcval['RankineRounded'])+"\" windchillk=\""+str(getwcval['KelvinRounded'])+"\" windchilld=\""+str(getwcval['DelisleRounded'])+"\" windchilln=\""+str(getwcval['NewtonRounded'])+"\" windchillre=\""+str(getwcval['ReaumurRounded'])+"\" windchillro=\""+str(getwcval['RomerRounded'])+"\" frostbitelevel=\"3\" frostbitemin=\"5\" />\n";
    tempstart = tempstart - 5;
   windstart = windstart + 5;
  windchillout = windchillout + "</noaawcc>\n";
@@ -348,16 +420,28 @@ def HeatIndexByDewPoint(Temperature, DewPointTemp, TempUnit = "Fahrenheit"):
  heatindexret.update({
  'Fahrenheit': "{:0.2f}".format(float(hi)), 
  'Celsius': "{:0.2f}".format(float(ConvertTempUnits(float(hi), "Fahrenheit", "Celsius")['CelsiusFull'])), 
- 'Rankine': "{:0.2f}".format(float(hi) + float(273.15)), 
+ 'Rankine': "{:0.2f}".format(float(ConvertTempUnits(float(hi), "Fahrenheit", "Celsius")['RankineFull'])), 
  'Kelvin': "{:0.2f}".format(float(ConvertTempUnits(float(hi), "Fahrenheit", "Celsius")['KelvinFull'])), 
+ 'Delisle': "{:0.2f}".format(float(ConvertTempUnits(float(hi), "Fahrenheit", "Celsius")['DelisleFull'])), 
+ 'Newton': "{:0.2f}".format(float(ConvertTempUnits(float(hi), "Fahrenheit", "Celsius")['NewtonFull'])), 
+ 'Reaumur': "{:0.2f}".format(float(ConvertTempUnits(float(hi), "Fahrenheit", "Celsius")['ReaumurFull'])), 
+ 'Romer': "{:0.2f}".format(float(ConvertTempUnits(float(hi), "Fahrenheit", "Celsius")['RomerFull'])), 
  'FahrenheitFull': float(hi), 
  'CelsiusFull': float(ConvertTempUnits(float(hi), "Fahrenheit", "Celsius")['CelsiusFull']), 
- 'RankineFull': float(hi) + float(273.15), 
+ 'RankineFull': float(ConvertTempUnits(float(hi), "Fahrenheit", "Celsius")['RankineFull']), 
  'KelvinFull': float(ConvertTempUnits(float(hi), "Fahrenheit", "Celsius")['KelvinFull']), 
+ 'DelisleFull': float(ConvertTempUnits(float(hi), "Fahrenheit", "Celsius")['DelisleFull']), 
+ 'NewtonFull': float(ConvertTempUnits(float(hi), "Fahrenheit", "Celsius")['NewtonFull']), 
+ 'ReaumurFull': float(ConvertTempUnits(float(hi), "Fahrenheit", "Celsius")['ReaumurFull']), 
+ 'RomerFull': float(ConvertTempUnits(float(hi), "Fahrenheit", "Celsius")['RomerFull']), 
  'FahrenheitRounded': RoundToInt(float(hi)), 
  'CelsiusRounded': RoundToInt(ConvertTempUnits(float(hi), "Fahrenheit", "Celsius")['CelsiusFull']), 
- 'RankineRounded': RoundToInt(float(hi) + float(273.15)), 
- 'KelvinRounded': RoundToInt(ConvertTempUnits(float(hi), "Fahrenheit", "Celsius")['KelvinFull'])
+ 'RankineRounded': RoundToInt(ConvertTempUnits(float(hi), "Fahrenheit", "Celsius")['RankineFull']), 
+ 'KelvinRounded': RoundToInt(ConvertTempUnits(float(hi), "Fahrenheit", "Celsius")['KelvinFull']), 
+ 'DelisleRounded': RoundToInt(ConvertTempUnits(float(hi), "Fahrenheit", "Celsius")['DelisleFull']), 
+ 'NewtonRounded': RoundToInt(ConvertTempUnits(float(hi), "Fahrenheit", "Celsius")['NewtonFull']), 
+ 'ReaumurRounded': RoundToInt(ConvertTempUnits(float(hi), "Fahrenheit", "Celsius")['ReaumurFull']), 
+ 'RomerRounded': RoundToInt(ConvertTempUnits(float(hi), "Fahrenheit", "Celsius")['RomerFull'])
  });
  return heatindexret;
 
@@ -396,16 +480,28 @@ def HeatIndexByRelativeHumidity(Temperature, Humidity, TempUnit = "Fahrenheit"):
  heatindexret.update({
  'Fahrenheit': "{:0.2f}".format(float(hi)), 
  'Celsius': "{:0.2f}".format(float(ConvertTempUnits(float(hi), "Fahrenheit", "Celsius")['CelsiusFull'])), 
- 'Rankine': "{:0.2f}".format(float(hi) + float(273.15)), 
+ 'Rankine': "{:0.2f}".format(float(ConvertTempUnits(float(hi), "Fahrenheit", "Celsius")['RankineFull'])), 
  'Kelvin': "{:0.2f}".format(float(ConvertTempUnits(float(hi), "Fahrenheit", "Celsius")['KelvinFull'])), 
+ 'Delisle': "{:0.2f}".format(float(ConvertTempUnits(float(hi), "Fahrenheit", "Celsius")['DelisleFull'])), 
+ 'Newton': "{:0.2f}".format(float(ConvertTempUnits(float(hi), "Fahrenheit", "Celsius")['NewtonFull'])), 
+ 'Reaumur': "{:0.2f}".format(float(ConvertTempUnits(float(hi), "Fahrenheit", "Celsius")['ReaumurFull'])), 
+ 'Romer': "{:0.2f}".format(float(ConvertTempUnits(float(hi), "Fahrenheit", "Celsius")['RomerFull'])), 
  'FahrenheitFull': float(hi), 
  'CelsiusFull': float(ConvertTempUnits(float(hi), "Fahrenheit", "Celsius")['CelsiusFull']), 
- 'RankineFull': float(hi) + float(273.15), 
- 'KelvinFull': float(ConvertTempUnits(float(hi), "Fahrenheit", "Celsius")['KelvinFull']), 
+ 'RankineFull': float(ConvertTempUnits(float(hi), "Fahrenheit", "Celsius")['RankineFull']), 
+ 'KelvinFull': float(ConvertTempUnits(float(hi), "Fahrenheit", "Celsius")['KelvinFull']),
+ 'DelisleFull': float(ConvertTempUnits(float(hi), "Fahrenheit", "Celsius")['DelisleFull']), 
+ 'NewtonFull': float(ConvertTempUnits(float(hi), "Fahrenheit", "Celsius")['NewtonFull']), 
+ 'ReaumurFull': float(ConvertTempUnits(float(hi), "Fahrenheit", "Celsius")['ReaumurFull']), 
+ 'RomerFull': float(ConvertTempUnits(float(hi), "Fahrenheit", "Celsius")['RomerFull']),  
  'FahrenheitRounded': RoundToInt(float(hi)), 
  'CelsiusRounded': RoundToInt(ConvertTempUnits(float(hi), "Fahrenheit", "Celsius")['CelsiusFull']), 
- 'RankineRounded': RoundToInt(float(hi) + float(273.15)), 
- 'KelvinRounded': RoundToInt(ConvertTempUnits(float(hi), "Fahrenheit", "Celsius")['KelvinFull'])
+ 'RankineRounded': RoundToInt(ConvertTempUnits(float(hi), "Fahrenheit", "Celsius")['RankineFull']), 
+ 'KelvinRounded': RoundToInt(ConvertTempUnits(float(hi), "Fahrenheit", "Celsius")['KelvinFull']), 
+ 'DelisleRounded': RoundToInt(ConvertTempUnits(float(hi), "Fahrenheit", "Celsius")['DelisleFull']), 
+ 'NewtonRounded': RoundToInt(ConvertTempUnits(float(hi), "Fahrenheit", "Celsius")['NewtonFull']), 
+ 'ReaumurRounded': RoundToInt(ConvertTempUnits(float(hi), "Fahrenheit", "Celsius")['ReaumurFull']), 
+ 'RomerRounded': RoundToInt(ConvertTempUnits(float(hi), "Fahrenheit", "Celsius")['RomerFull'])
  });
  return heatindexret;
 
@@ -423,7 +519,7 @@ def HeatIndexByRelativeHumidityGenXML(TempUnit = "Fahrenheit", OutputFile = "-")
  minhumid = 40;
  maxhumid = 100;
  humidstart = 40;
- humidityout = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE noaahic [\n<!ELEMENT noaahic (hic)*>\n<!ELEMENT hic EMPTY>\n<!ATTLIST hic temperaturef CDATA #IMPLIED>\n<!ATTLIST hic temperaturec CDATA #IMPLIED>\n<!ATTLIST hic temperaturer CDATA #IMPLIED>\n<!ATTLIST hic temperaturek CDATA #IMPLIED>\n<!ATTLIST hic humidity CDATA #IMPLIED>\n<!ATTLIST hic humidityf CDATA #IMPLIED>\n<!ATTLIST hic humidityc CDATA #IMPLIED>\n<!ATTLIST hic humidityr CDATA #IMPLIED>\n<!ATTLIST hic humidityk CDATA #IMPLIED>\n<!ATTLIST hic heatlevelnum CDATA #IMPLIED>\n<!ATTLIST hic heatlevel CDATA #IMPLIED>\n]>\n<noaahic>\n";
+ humidityout = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE noaahic [\n<!ELEMENT noaahic (hic)*>\n<!ELEMENT hic EMPTY>\n<!ATTLIST hic temperaturef CDATA #IMPLIED>\n<!ATTLIST hic temperaturec CDATA #IMPLIED>\n<!ATTLIST hic temperaturer CDATA #IMPLIED>\n<!ATTLIST hic temperaturek CDATA #IMPLIED>\n<!ATTLIST hic temperatured CDATA #IMPLIED>\n<!ATTLIST hic temperaturen CDATA #IMPLIED>\n<!ATTLIST hic temperaturere CDATA #IMPLIED>\n<!ATTLIST hic temperaturero CDATA #IMPLIED>\n<!ATTLIST hic humidity CDATA #IMPLIED>\n<!ATTLIST hic humidityf CDATA #IMPLIED>\n<!ATTLIST hic humidityc CDATA #IMPLIED>\n<!ATTLIST hic humidityr CDATA #IMPLIED>\n<!ATTLIST hic humidityk CDATA #IMPLIED>\n<!ATTLIST hic humidityd CDATA #IMPLIED>\n<!ATTLIST hic humidityn CDATA #IMPLIED>\n<!ATTLIST hic humidityre CDATA #IMPLIED>\n<!ATTLIST hic humidityro CDATA #IMPLIED>\n<!ATTLIST hic heatlevelnum CDATA #IMPLIED>\n<!ATTLIST hic heatlevel CDATA #IMPLIED>\n]>\n<noaahic>\n";
  while(humidstart <= maxhumid):
   tempstart = 80;
   while(tempstart <= maxtemp):
@@ -445,7 +541,7 @@ def HeatIndexByRelativeHumidityGenXML(TempUnit = "Fahrenheit", OutputFile = "-")
       (humidstart == 90 and tempstart >= 80 and tempstart <= 80) or 
       (humidstart == 95 and tempstart >= 80 and tempstart <= 80) or 
       (humidstart == 100 and tempstart >= 80 and tempstart <= 80)):
-    humidityout = humidityout + " <hic temperaturef=\""+str(gettuval['FahrenheitRounded'])+"\" temperaturec=\""+str(gettuval['CelsiusRounded'])+"\" temperaturer=\""+str(gettuval['RankineRounded'])+"\" temperaturek=\""+str(gettuval['KelvinRounded'])+"\" humidity=\""+str(humidstart)+"\" humidityf=\""+str(getwcval['FahrenheitRounded'])+"\" humidityc=\""+str(getwcval['CelsiusRounded'])+"\" humidityr=\""+str(getwcval['RankineRounded'])+"\" humidityk=\""+str(getwcval['KelvinRounded'])+"\" heatlevelnum=\"0\" heatlevel=\"Caution\" />\n";
+    humidityout = humidityout + " <hic temperaturef=\""+str(gettuval['FahrenheitRounded'])+"\" temperaturec=\""+str(gettuval['CelsiusRounded'])+"\" temperaturer=\""+str(gettuval['RankineRounded'])+"\" temperaturek=\""+str(gettuval['KelvinRounded'])+"\" temperatured=\""+str(gettuval['DelisleRounded'])+"\" temperaturen=\""+str(gettuval['NewtonRounded'])+"\" temperaturere=\""+str(gettuval['ReaumurRounded'])+"\" temperaturero=\""+str(gettuval['RomerRounded'])+"\" humidity=\""+str(humidstart)+"\" humidityf=\""+str(getwcval['FahrenheitRounded'])+"\" humidityc=\""+str(getwcval['CelsiusRounded'])+"\" humidityr=\""+str(getwcval['RankineRounded'])+"\" humidityk=\""+str(getwcval['KelvinRounded'])+"\" humidityd=\""+str(getwcval['DelisleRounded'])+"\" humidityn=\""+str(getwcval['NewtonRounded'])+"\" humidityre=\""+str(getwcval['ReaumurRounded'])+"\" humidityro=\""+str(getwcval['RomerRounded'])+"\" heatlevelnum=\"0\" heatlevel=\"Caution\" />\n";
    if((humidstart == 40 and tempstart >= 90 and tempstart <= 96) or 
       (humidstart == 45 and tempstart >= 90 and tempstart <= 94) or 
       (humidstart == 50 and tempstart >= 88 and tempstart <= 94) or 
@@ -459,7 +555,7 @@ def HeatIndexByRelativeHumidityGenXML(TempUnit = "Fahrenheit", OutputFile = "-")
       (humidstart == 90 and tempstart >= 82 and tempstart <= 84) or 
       (humidstart == 95 and tempstart >= 82 and tempstart <= 84) or 
       (humidstart == 100 and tempstart >= 82 and tempstart <= 84)):
-    humidityout = humidityout + " <hic temperaturef=\""+str(gettuval['FahrenheitRounded'])+"\" temperaturec=\""+str(gettuval['CelsiusRounded'])+"\" temperaturer=\""+str(gettuval['RankineRounded'])+"\" temperaturek=\""+str(gettuval['KelvinRounded'])+"\" humidity=\""+str(humidstart)+"\" humidityf=\""+str(getwcval['FahrenheitRounded'])+"\" humidityc=\""+str(getwcval['CelsiusRounded'])+"\" humidityr=\""+str(getwcval['RankineRounded'])+"\" humidityk=\""+str(getwcval['KelvinRounded'])+"\" heatlevelnum=\"1\" heatlevel=\"Extreme Caution\" />\n";
+    humidityout = humidityout + " <hic temperaturef=\""+str(gettuval['FahrenheitRounded'])+"\" temperaturec=\""+str(gettuval['CelsiusRounded'])+"\" temperaturer=\""+str(gettuval['RankineRounded'])+"\" temperaturek=\""+str(gettuval['KelvinRounded'])+"\" temperatured=\""+str(gettuval['DelisleRounded'])+"\" temperaturen=\""+str(gettuval['NewtonRounded'])+"\" temperaturere=\""+str(gettuval['ReaumurRounded'])+"\" temperaturero=\""+str(gettuval['RomerRounded'])+"\" humidity=\""+str(humidstart)+"\" humidityf=\""+str(getwcval['FahrenheitRounded'])+"\" humidityc=\""+str(getwcval['CelsiusRounded'])+"\" humidityr=\""+str(getwcval['RankineRounded'])+"\" humidityk=\""+str(getwcval['KelvinRounded'])+"\" humidityd=\""+str(getwcval['DelisleRounded'])+"\" humidityn=\""+str(getwcval['NewtonRounded'])+"\" humidityre=\""+str(getwcval['ReaumurRounded'])+"\" humidityro=\""+str(getwcval['RomerRounded'])+"\" heatlevelnum=\"1\" heatlevel=\"Extreme Caution\" />\n";
    if((humidstart == 40 and tempstart >= 98 and tempstart <= 106) or 
       (humidstart == 45 and tempstart >= 96 and tempstart <= 104) or 
       (humidstart == 50 and tempstart >= 96 and tempstart <= 102) or 
@@ -473,7 +569,7 @@ def HeatIndexByRelativeHumidityGenXML(TempUnit = "Fahrenheit", OutputFile = "-")
       (humidstart == 90 and tempstart >= 86 and tempstart <= 90) or 
       (humidstart == 95 and tempstart >= 86 and tempstart <= 88) or 
       (humidstart == 100 and tempstart >= 86 and tempstart <= 88)):
-    humidityout = humidityout + " <hic temperaturef=\""+str(gettuval['FahrenheitRounded'])+"\" temperaturec=\""+str(gettuval['CelsiusRounded'])+"\" temperaturer=\""+str(gettuval['RankineRounded'])+"\" temperaturek=\""+str(gettuval['KelvinRounded'])+"\" humidity=\""+str(humidstart)+"\" humidityf=\""+str(getwcval['FahrenheitRounded'])+"\" humidityc=\""+str(getwcval['CelsiusRounded'])+"\" humidityr=\""+str(getwcval['RankineRounded'])+"\" humidityk=\""+str(getwcval['KelvinRounded'])+"\" heatlevelnum=\"2\" heatlevel=\"Danger\" />\n";
+    humidityout = humidityout + " <hic temperaturef=\""+str(gettuval['FahrenheitRounded'])+"\" temperaturec=\""+str(gettuval['CelsiusRounded'])+"\" temperaturer=\""+str(gettuval['RankineRounded'])+"\" temperaturek=\""+str(gettuval['KelvinRounded'])+"\" temperatured=\""+str(gettuval['DelisleRounded'])+"\" temperaturen=\""+str(gettuval['NewtonRounded'])+"\" temperaturere=\""+str(gettuval['ReaumurRounded'])+"\" temperaturero=\""+str(gettuval['RomerRounded'])+"\" humidity=\""+str(humidstart)+"\" humidityf=\""+str(getwcval['FahrenheitRounded'])+"\" humidityc=\""+str(getwcval['CelsiusRounded'])+"\" humidityr=\""+str(getwcval['RankineRounded'])+"\" humidityk=\""+str(getwcval['KelvinRounded'])+"\" humidityd=\""+str(getwcval['DelisleRounded'])+"\" humidityn=\""+str(getwcval['NewtonRounded'])+"\" humidityre=\""+str(getwcval['ReaumurRounded'])+"\" humidityro=\""+str(getwcval['RomerRounded'])+"\" heatlevelnum=\"2\" heatlevel=\"Danger\" />\n";
    if((humidstart == 40 and tempstart >= 108 and tempstart <= 110) or 
       (humidstart == 45 and tempstart >= 106 and tempstart <= 108) or 
       (humidstart == 50 and tempstart >= 104 and tempstart <= 106) or 
@@ -487,7 +583,7 @@ def HeatIndexByRelativeHumidityGenXML(TempUnit = "Fahrenheit", OutputFile = "-")
       (humidstart == 90 and tempstart >= 92 and tempstart <= 92) or 
       (humidstart == 95 and tempstart >= 90 and tempstart <= 90) or 
       (humidstart == 100 and tempstart >= 90 and tempstart <= 90)):
-    humidityout = humidityout + " <hic temperaturef=\""+str(gettuval['FahrenheitRounded'])+"\" temperaturec=\""+str(gettuval['CelsiusRounded'])+"\" temperaturer=\""+str(gettuval['RankineRounded'])+"\" temperaturek=\""+str(gettuval['KelvinRounded'])+"\" humidity=\""+str(humidstart)+"\" humidityf=\""+str(getwcval['FahrenheitRounded'])+"\" humidityc=\""+str(getwcval['CelsiusRounded'])+"\" humidityr=\""+str(getwcval['RankineRounded'])+"\" humidityk=\""+str(getwcval['KelvinRounded'])+"\" heatlevelnum=\"3\" heatlevel=\"Extreme Danger\" />\n";
+    humidityout = humidityout + " <hic temperaturef=\""+str(gettuval['FahrenheitRounded'])+"\" temperaturec=\""+str(gettuval['CelsiusRounded'])+"\" temperaturer=\""+str(gettuval['RankineRounded'])+"\" temperaturek=\""+str(gettuval['KelvinRounded'])+"\" temperatured=\""+str(gettuval['DelisleRounded'])+"\" temperaturen=\""+str(gettuval['NewtonRounded'])+"\" temperaturere=\""+str(gettuval['ReaumurRounded'])+"\" temperaturero=\""+str(gettuval['RomerRounded'])+"\" humidity=\""+str(humidstart)+"\" humidityf=\""+str(getwcval['FahrenheitRounded'])+"\" humidityc=\""+str(getwcval['CelsiusRounded'])+"\" humidityr=\""+str(getwcval['RankineRounded'])+"\" humidityk=\""+str(getwcval['KelvinRounded'])+"\" humidityd=\""+str(getwcval['DelisleRounded'])+"\" humidityn=\""+str(getwcval['NewtonRounded'])+"\" humidityre=\""+str(getwcval['ReaumurRounded'])+"\" humidityro=\""+str(getwcval['RomerRounded'])+"\" heatlevelnum=\"3\" heatlevel=\"Extreme Danger\" />\n";
    tempstart = tempstart + 2;
   humidstart = humidstart + 5;
  humidityout = humidityout + "</noaahic>\n";
