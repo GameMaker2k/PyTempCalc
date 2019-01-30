@@ -313,7 +313,6 @@ def WindChillGenXML(TempUnit = "Fahrenheit", WindUnit = "MPH", OutputFile = "-")
     getwuval = ConvertWindUnits(tempstart, "MPH", "KMH");
    if(WindUnit == "KMH"):
     getwuval = ConvertWindUnits(tempstart, "KMH", "MPH");
-    tempstart = getwuval['MPHRounded'];
    if((windstart == 5 and tempstart <= 40 and tempstart >= -5) or 
       (windstart == 10 and tempstart <= 40 and tempstart >= 0) or 
       (windstart == 15 and tempstart <= 40 and tempstart >= 5) or 
