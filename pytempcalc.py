@@ -130,20 +130,26 @@ def ConvertWindUnits(WindSpeed, InWindUnit = "MPH", OutWindUnit = "KMH"):
   retval.update({
   'MPH': "{:0.2f}".format(float(WindSpeed)), 
   'KMH': "{:0.2f}".format(float(retvaltmp)), 
+  'NMPH': "{:0.2f}".format(float(float(WindSpeed) * 0.86897624)), 
   'MPHFull': float(WindSpeed), 
   'KMHFull': float(retvaltmp), 
+  'NMPHFull': float(float(WindSpeed) * 0.86897624), 
   'MPHRounded': RoundToInt(float(WindSpeed)), 
-  'KMHRounded': RoundToInt(float(retvaltmp))
+  'KMHRounded': RoundToInt(float(retvaltmp)),
+  'NMPHRounded': RoundToInt(float(float(WindSpeed) * 0.86897624))
   });
  elif(InWindUnit == "KMH" and OutWindUnit == "MPH"):
   retvaltmp = float(float(WindSpeed) / 1.609344);
   retval.update({
   'MPH': "{:0.2f}".format(float(retvaltmp)), 
   'KMH': "{:0.2f}".format(float(WindSpeed)), 
+  'NMPH': "{:0.2f}".format(float(float(WindSpeed) * 0.5399568)), 
   'MPHFull': float(retvaltmp), 
   'KMHFull': float(WindSpeed), 
+  'NMPHFull': float(float(WindSpeed) * 0.5399568), 
   'MPHRounded': RoundToInt(float(retvaltmp)), 
-  'KMHRounded': RoundToInt(float(WindSpeed))
+  'KMHRounded': RoundToInt(float(WindSpeed)), 
+  'NMPHRounded': RoundToInt(float(float(WindSpeed) * 0.5399568))
   });
  else:
   return False;
@@ -300,7 +306,7 @@ def WindChillGenXML(TempUnit = "Fahrenheit", WindUnit = "MPH", OutputFile = "-")
  minwind = 5;
  maxwind = 60;
  windstart = 5;
- windchillout = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE noaawcc [\n<!ELEMENT noaawcc (wcc)*>\n<!ELEMENT wcc EMPTY>\n<!ATTLIST wcc windspeedmph CDATA #REQUIRED>\n<!ATTLIST wcc windspeedkhm CDATA #REQUIRED>\n<!ATTLIST wcc temperaturef CDATA #IMPLIED>\n<!ATTLIST wcc temperaturec CDATA #IMPLIED>\n<!ATTLIST wcc temperaturer CDATA #IMPLIED>\n<!ATTLIST wcc temperaturek CDATA #IMPLIED>\n<!ATTLIST wcc temperatured CDATA #IMPLIED>\n<!ATTLIST wcc temperaturen CDATA #IMPLIED>\n<!ATTLIST wcc temperaturere CDATA #IMPLIED>\n<!ATTLIST wcc temperaturero CDATA #IMPLIED>\n<!ATTLIST wcc windchillf CDATA #IMPLIED>\n<!ATTLIST wcc windchillc CDATA #IMPLIED>\n<!ATTLIST wcc windchillr CDATA #IMPLIED>\n<!ATTLIST wcc windchillk CDATA #IMPLIED>\n<!ATTLIST wcc windchilld CDATA #IMPLIED>\n<!ATTLIST wcc windchilln CDATA #IMPLIED>\n<!ATTLIST wcc windchillre CDATA #IMPLIED>\n<!ATTLIST wcc windchillro CDATA #IMPLIED>\n<!ATTLIST wcc frostbitelevel CDATA #IMPLIED>\n<!ATTLIST wcc frostbitemin CDATA #IMPLIED>\n]>\n<noaawcc>\n";
+ windchillout = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE noaawcc [\n<!ELEMENT noaawcc (wcc)*>\n<!ELEMENT wcc EMPTY>\n<!ATTLIST wcc windspeedmph CDATA #REQUIRED>\n<!ATTLIST wcc windspeedkhm CDATA #REQUIRED>\n<!ATTLIST wcc windspeedknots CDATA #REQUIRED>\n<!ATTLIST wcc temperaturef CDATA #IMPLIED>\n<!ATTLIST wcc temperaturec CDATA #IMPLIED>\n<!ATTLIST wcc temperaturer CDATA #IMPLIED>\n<!ATTLIST wcc temperaturek CDATA #IMPLIED>\n<!ATTLIST wcc temperatured CDATA #IMPLIED>\n<!ATTLIST wcc temperaturen CDATA #IMPLIED>\n<!ATTLIST wcc temperaturere CDATA #IMPLIED>\n<!ATTLIST wcc temperaturero CDATA #IMPLIED>\n<!ATTLIST wcc windchillf CDATA #IMPLIED>\n<!ATTLIST wcc windchillc CDATA #IMPLIED>\n<!ATTLIST wcc windchillr CDATA #IMPLIED>\n<!ATTLIST wcc windchillk CDATA #IMPLIED>\n<!ATTLIST wcc windchilld CDATA #IMPLIED>\n<!ATTLIST wcc windchilln CDATA #IMPLIED>\n<!ATTLIST wcc windchillre CDATA #IMPLIED>\n<!ATTLIST wcc windchillro CDATA #IMPLIED>\n<!ATTLIST wcc frostbitelevel CDATA #IMPLIED>\n<!ATTLIST wcc frostbitemin CDATA #IMPLIED>\n]>\n<noaawcc>\n";
  while(windstart <= maxwind):
   tempstart = 40;
   while(tempstart >= mintemp):
@@ -325,7 +331,7 @@ def WindChillGenXML(TempUnit = "Fahrenheit", WindUnit = "MPH", OutputFile = "-")
       (windstart == 50 and tempstart <= 40 and tempstart >= 10) or 
       (windstart == 55 and tempstart <= 40 and tempstart >= 15) or 
       (windstart == 60 and tempstart <= 40 and tempstart >= 15)):
-    windchillout = windchillout + " <wcc windspeedmph=\""+str(getwuval['MPHRounded'])+"\" windspeedkhm=\""+str(getwuval['KMHRounded'])+"\" temperaturef=\""+str(gettuval['FahrenheitRounded'])+"\" temperaturec=\""+str(gettuval['CelsiusRounded'])+"\" temperaturer=\""+str(gettuval['RankineRounded'])+"\" temperaturek=\""+str(gettuval['KelvinRounded'])+"\" temperatured=\""+str(gettuval['DelisleRounded'])+"\" temperaturen=\""+str(gettuval['NewtonRounded'])+"\" temperaturere=\""+str(gettuval['ReaumurRounded'])+"\" temperaturero=\""+str(gettuval['RomerRounded'])+"\" windchillf=\""+str(getwcval['FahrenheitRounded'])+"\" windchillc=\""+str(getwcval['CelsiusRounded'])+"\" windchillr=\""+str(getwcval['RankineRounded'])+"\" windchillk=\""+str(getwcval['KelvinRounded'])+"\" windchilld=\""+str(getwcval['DelisleRounded'])+"\" windchilln=\""+str(getwcval['NewtonRounded'])+"\" windchillre=\""+str(getwcval['ReaumurRounded'])+"\" windchillro=\""+str(getwcval['RomerRounded'])+"\" frostbitelevel=\"0\" frostbitemin=\"-1\" />\n";
+    windchillout = windchillout + " <wcc windspeedmph=\""+str(getwuval['MPHRounded'])+"\" windspeedkhm=\""+str(getwuval['KMHRounded'])+"\" windspeedknots=\""+str(getwuval['NMPHRounded'])+"\" temperaturef=\""+str(gettuval['FahrenheitRounded'])+"\" temperaturec=\""+str(gettuval['CelsiusRounded'])+"\" temperaturer=\""+str(gettuval['RankineRounded'])+"\" temperaturek=\""+str(gettuval['KelvinRounded'])+"\" temperatured=\""+str(gettuval['DelisleRounded'])+"\" temperaturen=\""+str(gettuval['NewtonRounded'])+"\" temperaturere=\""+str(gettuval['ReaumurRounded'])+"\" temperaturero=\""+str(gettuval['RomerRounded'])+"\" windchillf=\""+str(getwcval['FahrenheitRounded'])+"\" windchillc=\""+str(getwcval['CelsiusRounded'])+"\" windchillr=\""+str(getwcval['RankineRounded'])+"\" windchillk=\""+str(getwcval['KelvinRounded'])+"\" windchilld=\""+str(getwcval['DelisleRounded'])+"\" windchilln=\""+str(getwcval['NewtonRounded'])+"\" windchillre=\""+str(getwcval['ReaumurRounded'])+"\" windchillro=\""+str(getwcval['RomerRounded'])+"\" frostbitelevel=\"0\" frostbitemin=\"-1\" />\n";
    if((windstart == 5 and tempstart <= -10 and tempstart >= -35) or 
       (windstart == 10 and tempstart <= -5 and tempstart >= -20) or 
       (windstart == 15 and tempstart <= 0 and tempstart >= -15) or 
@@ -338,7 +344,7 @@ def WindChillGenXML(TempUnit = "Fahrenheit", WindUnit = "MPH", OutputFile = "-")
       (windstart == 50 and tempstart <= 5 and tempstart >= 0) or 
       (windstart == 55 and tempstart <= 10 and tempstart >= 5) or 
       (windstart == 60 and tempstart <= 10 and tempstart >= 5)):
-    windchillout = windchillout + " <wcc windspeedmph=\""+str(getwuval['MPHRounded'])+"\" windspeedkhm=\""+str(getwuval['KMHRounded'])+"\" temperaturef=\""+str(gettuval['FahrenheitRounded'])+"\" temperaturec=\""+str(gettuval['CelsiusRounded'])+"\" temperaturer=\""+str(gettuval['RankineRounded'])+"\" temperaturek=\""+str(gettuval['KelvinRounded'])+"\" temperatured=\""+str(gettuval['DelisleRounded'])+"\" temperaturen=\""+str(gettuval['NewtonRounded'])+"\" temperaturere=\""+str(gettuval['ReaumurRounded'])+"\" temperaturero=\""+str(gettuval['RomerRounded'])+"\" windchillf=\""+str(getwcval['FahrenheitRounded'])+"\" windchillc=\""+str(getwcval['CelsiusRounded'])+"\" windchillr=\""+str(getwcval['RankineRounded'])+"\" windchillk=\""+str(getwcval['KelvinRounded'])+"\" windchilld=\""+str(getwcval['DelisleRounded'])+"\" windchilln=\""+str(getwcval['NewtonRounded'])+"\" windchillre=\""+str(getwcval['ReaumurRounded'])+"\" windchillro=\""+str(getwcval['RomerRounded'])+"\" frostbitelevel=\"1\" frostbitemin=\"30\" />\n";
+    windchillout = windchillout + " <wcc windspeedmph=\""+str(getwuval['MPHRounded'])+"\" windspeedkhm=\""+str(getwuval['KMHRounded'])+"\" windspeedknots=\""+str(getwuval['NMPHRounded'])+"\" temperaturef=\""+str(gettuval['FahrenheitRounded'])+"\" temperaturec=\""+str(gettuval['CelsiusRounded'])+"\" temperaturer=\""+str(gettuval['RankineRounded'])+"\" temperaturek=\""+str(gettuval['KelvinRounded'])+"\" temperatured=\""+str(gettuval['DelisleRounded'])+"\" temperaturen=\""+str(gettuval['NewtonRounded'])+"\" temperaturere=\""+str(gettuval['ReaumurRounded'])+"\" temperaturero=\""+str(gettuval['RomerRounded'])+"\" windchillf=\""+str(getwcval['FahrenheitRounded'])+"\" windchillc=\""+str(getwcval['CelsiusRounded'])+"\" windchillr=\""+str(getwcval['RankineRounded'])+"\" windchillk=\""+str(getwcval['KelvinRounded'])+"\" windchilld=\""+str(getwcval['DelisleRounded'])+"\" windchilln=\""+str(getwcval['NewtonRounded'])+"\" windchillre=\""+str(getwcval['ReaumurRounded'])+"\" windchillro=\""+str(getwcval['RomerRounded'])+"\" frostbitelevel=\"1\" frostbitemin=\"30\" />\n";
    if((windstart == 5 and tempstart <= -40 and tempstart >= -45) or 
       (windstart == 10 and tempstart <= -25 and tempstart >= -45) or 
       (windstart == 15 and tempstart <= -20 and tempstart >= -35) or 
@@ -351,7 +357,7 @@ def WindChillGenXML(TempUnit = "Fahrenheit", WindUnit = "MPH", OutputFile = "-")
       (windstart == 50 and tempstart <= -5 and tempstart >= -10) or 
       (windstart == 55 and tempstart <= 0 and tempstart >= -10) or 
       (windstart == 60 and tempstart <= 0 and tempstart >= 0)):
-    windchillout = windchillout + " <wcc windspeedmph=\""+str(getwuval['MPHRounded'])+"\" windspeedkhm=\""+str(getwuval['KMHRounded'])+"\" temperaturef=\""+str(gettuval['FahrenheitRounded'])+"\" temperaturec=\""+str(gettuval['CelsiusRounded'])+"\" temperaturer=\""+str(gettuval['RankineRounded'])+"\" temperaturek=\""+str(gettuval['KelvinRounded'])+"\" temperatured=\""+str(gettuval['DelisleRounded'])+"\" temperaturen=\""+str(gettuval['NewtonRounded'])+"\" temperaturere=\""+str(gettuval['ReaumurRounded'])+"\" temperaturero=\""+str(gettuval['RomerRounded'])+"\" windchillf=\""+str(getwcval['FahrenheitRounded'])+"\" windchillc=\""+str(getwcval['CelsiusRounded'])+"\" windchillr=\""+str(getwcval['RankineRounded'])+"\" windchillk=\""+str(getwcval['KelvinRounded'])+"\" windchilld=\""+str(getwcval['DelisleRounded'])+"\" windchilln=\""+str(getwcval['NewtonRounded'])+"\" windchillre=\""+str(getwcval['ReaumurRounded'])+"\" windchillro=\""+str(getwcval['RomerRounded'])+"\" frostbitelevel=\"2\" frostbitemin=\"10\" />\n";
+    windchillout = windchillout + " <wcc windspeedmph=\""+str(getwuval['MPHRounded'])+"\" windspeedkhm=\""+str(getwuval['KMHRounded'])+"\" windspeedknots=\""+str(getwuval['NMPHRounded'])+"\" temperaturef=\""+str(gettuval['FahrenheitRounded'])+"\" temperaturec=\""+str(gettuval['CelsiusRounded'])+"\" temperaturer=\""+str(gettuval['RankineRounded'])+"\" temperaturek=\""+str(gettuval['KelvinRounded'])+"\" temperatured=\""+str(gettuval['DelisleRounded'])+"\" temperaturen=\""+str(gettuval['NewtonRounded'])+"\" temperaturere=\""+str(gettuval['ReaumurRounded'])+"\" temperaturero=\""+str(gettuval['RomerRounded'])+"\" windchillf=\""+str(getwcval['FahrenheitRounded'])+"\" windchillc=\""+str(getwcval['CelsiusRounded'])+"\" windchillr=\""+str(getwcval['RankineRounded'])+"\" windchillk=\""+str(getwcval['KelvinRounded'])+"\" windchilld=\""+str(getwcval['DelisleRounded'])+"\" windchilln=\""+str(getwcval['NewtonRounded'])+"\" windchillre=\""+str(getwcval['ReaumurRounded'])+"\" windchillro=\""+str(getwcval['RomerRounded'])+"\" frostbitelevel=\"2\" frostbitemin=\"10\" />\n";
    if((windstart == 15 and tempstart <= -40 and tempstart >= -45) or 
       (windstart == 20 and tempstart <= -35 and tempstart >= -45) or 
       (windstart == 25 and tempstart <= -30 and tempstart >= -45) or 
@@ -362,7 +368,7 @@ def WindChillGenXML(TempUnit = "Fahrenheit", WindUnit = "MPH", OutputFile = "-")
       (windstart == 50 and tempstart <= -15 and tempstart >= -45) or 
       (windstart == 55 and tempstart <= -15 and tempstart >= -45) or 
       (windstart == 60 and tempstart <= -10 and tempstart >= -45)):
-    windchillout = windchillout + " <wcc windspeedmph=\""+str(getwuval['MPHRounded'])+"\" windspeedkhm=\""+str(getwuval['KMHRounded'])+"\" temperaturef=\""+str(gettuval['FahrenheitRounded'])+"\" temperaturec=\""+str(gettuval['CelsiusRounded'])+"\" temperaturer=\""+str(gettuval['RankineRounded'])+"\" temperaturek=\""+str(gettuval['KelvinRounded'])+"\" temperatured=\""+str(gettuval['DelisleRounded'])+"\" temperaturen=\""+str(gettuval['NewtonRounded'])+"\" temperaturere=\""+str(gettuval['ReaumurRounded'])+"\" temperaturero=\""+str(gettuval['RomerRounded'])+"\" windchillf=\""+str(getwcval['FahrenheitRounded'])+"\" windchillc=\""+str(getwcval['CelsiusRounded'])+"\" windchillr=\""+str(getwcval['RankineRounded'])+"\" windchillk=\""+str(getwcval['KelvinRounded'])+"\" windchilld=\""+str(getwcval['DelisleRounded'])+"\" windchilln=\""+str(getwcval['NewtonRounded'])+"\" windchillre=\""+str(getwcval['ReaumurRounded'])+"\" windchillro=\""+str(getwcval['RomerRounded'])+"\" frostbitelevel=\"3\" frostbitemin=\"5\" />\n";
+    windchillout = windchillout + " <wcc windspeedmph=\""+str(getwuval['MPHRounded'])+"\" windspeedkhm=\""+str(getwuval['KMHRounded'])+"\" windspeedknots=\""+str(getwuval['NMPHRounded'])+"\" temperaturef=\""+str(gettuval['FahrenheitRounded'])+"\" temperaturec=\""+str(gettuval['CelsiusRounded'])+"\" temperaturer=\""+str(gettuval['RankineRounded'])+"\" temperaturek=\""+str(gettuval['KelvinRounded'])+"\" temperatured=\""+str(gettuval['DelisleRounded'])+"\" temperaturen=\""+str(gettuval['NewtonRounded'])+"\" temperaturere=\""+str(gettuval['ReaumurRounded'])+"\" temperaturero=\""+str(gettuval['RomerRounded'])+"\" windchillf=\""+str(getwcval['FahrenheitRounded'])+"\" windchillc=\""+str(getwcval['CelsiusRounded'])+"\" windchillr=\""+str(getwcval['RankineRounded'])+"\" windchillk=\""+str(getwcval['KelvinRounded'])+"\" windchilld=\""+str(getwcval['DelisleRounded'])+"\" windchilln=\""+str(getwcval['NewtonRounded'])+"\" windchillre=\""+str(getwcval['ReaumurRounded'])+"\" windchillro=\""+str(getwcval['RomerRounded'])+"\" frostbitelevel=\"3\" frostbitemin=\"5\" />\n";
    tempstart = tempstart - 5;
   windstart = windstart + 5;
  windchillout = windchillout + "</noaawcc>\n";
