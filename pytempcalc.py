@@ -1,3 +1,9 @@
+
+def RelativeHumidityFahrenheit(Temperature, DewPointTemp):
+ return RelativeHumidity(Temperature, DewPointTemp, "Fahrenheit");
+
+def RelativeHumidityCelsius(Temperature, Humidity):
+ return RelativeHumidity(Temperature, DewPointTemp, "Celsius");
 #!/usr/bin/env python
 # -*- coding: iso-8859-15 -*-
 
@@ -174,7 +180,7 @@ def WindChill(Temperature, WindSpeed, TempUnit = "Fahrenheit", WindUnit = "MPH",
   if(NewWindChill):
    windchill = float(35.74 + 0.6215 * float(Temperature) - 35.75 * math.pow(float(WindSpeed), 0.16) + 0.4275 * float(Temperature) * math.pow(float(WindSpeed), 0.16));
   else:
-   windchill = float(0.0817 * (3.71 * (math.sqrt(float(WindSpeed), 0.16)) + 5.81 - 0.25 * float(WindSpeed)) * (float(Temperature) - 91.4) + 91.4);
+   windchill = float(0.0817 * (3.71 * (math.sqrt(float(WindSpeed))) + 5.81 - 0.25 * float(WindSpeed)) * (float(Temperature) - 91.4) + 91.4);
   windchillret.update({
   'Fahrenheit': "{:0.2f}".format(float(windchill)), 
   'Celsius': "{:0.2f}".format(float(ConvertTempUnits(float(windchill), "Fahrenheit", "Celsius")['CelsiusFull'])), 
@@ -206,7 +212,7 @@ def WindChill(Temperature, WindSpeed, TempUnit = "Fahrenheit", WindUnit = "MPH",
   if(NewWindChill):
    windchill = float(35.74 + 0.6215 * float(Temperature) - 35.75 * math.pow(float(WindSpeed), 0.16) + 0.4275 * float(Temperature) * math.pow(float(WindSpeed), 0.16));
   else:
-   windchill = float(0.0817 * (3.71 * (math.sqrt(float(WindSpeed), 0.16)) + 5.81 - 0.25 * float(WindSpeed)) * (float(Temperature) - 91.4) + 91.4);
+   windchill = float(0.0817 * (3.71 * (math.sqrt(float(WindSpeed))) + 5.81 - 0.25 * float(WindSpeed)) * (float(Temperature) - 91.4) + 91.4);
   windchillret.update({
   'Fahrenheit': "{:0.2f}".format(float(windchill)), 
   'Celsius': "{:0.2f}".format(float(ConvertTempUnits(float(windchill), "Fahrenheit", "Celsius")['CelsiusFull'])), 
@@ -238,7 +244,7 @@ def WindChill(Temperature, WindSpeed, TempUnit = "Fahrenheit", WindUnit = "MPH",
    windchill = float(13.12 + 0.6215 * float(Temperature) - 11.37 * math.pow(float(WindSpeed), 0.16) + 0.3965 * float(Temperature) * math.pow(float(WindSpeed), 0.16));
   else:
    Temperature = ConvertTempUnits(float(Temperature), "Celsius", "Fahrenheit")['FahrenheitFull'];
-   windchill = float(0.0817 * (3.71 * (math.sqrt(float(WindSpeed), 0.16)) + 5.81 - 0.25 * float(WindSpeed)) * (float(Temperature) - 91.4) + 91.4);
+   windchill = float(0.0817 * (3.71 * (math.sqrt(float(WindSpeed))) + 5.81 - 0.25 * float(WindSpeed)) * (float(Temperature) - 91.4) + 91.4);
    Temperature = ConvertTempUnits(float(Temperature), "Fahrenheit", "Celsius")['CelsiusFull'];
   windchillret.update({
   'Celsius': "{:0.2f}".format(float(windchill)), 
@@ -258,7 +264,7 @@ def WindChill(Temperature, WindSpeed, TempUnit = "Fahrenheit", WindUnit = "MPH",
   'ReaumurFull': float(ConvertTempUnits(float(windchill), "Celsius", "Fahrenheit")['ReaumurFull']), 
   'RomerFull': float(ConvertTempUnits(float(windchill), "Celsius", "Fahrenheit")['RomerFull']), 
   'CelsiusRounded': RoundToInt(float(windchill)), 
-  'FahrenheitRounded': RoundToInt(ConvertTempUnits(float(windchill)), "Celsius", "Fahrenheit")['FahrenheitFull'], 
+  'FahrenheitRounded': RoundToInt(ConvertTempUnits(float(windchill), "Celsius", "Fahrenheit")['FahrenheitFull']), 
   'RankineRounded': RoundToInt(ConvertTempUnits(float(windchill), "Celsius", "Fahrenheit")['RankineFull']), 
   'KelvinRounded': RoundToInt(ConvertTempUnits(float(windchill), "Celsius", "Fahrenheit")['KelvinFull']), 
   'DelisleRounded': RoundToInt(ConvertTempUnits(float(windchill), "Celsius", "Fahrenheit")['DelisleFull']), 
@@ -272,7 +278,7 @@ def WindChill(Temperature, WindSpeed, TempUnit = "Fahrenheit", WindUnit = "MPH",
    windchill = float(13.12 + 0.6215 * float(Temperature) - 11.37 * math.pow(float(WindSpeed), 0.16) + 0.3965 * float(Temperature) * math.pow(float(WindSpeed), 0.16));
   else:
    Temperature = ConvertTempUnits(float(Temperature), "Celsius", "Fahrenheit")['FahrenheitFull'];
-   windchill = float(0.0817 * (3.71 * (math.sqrt(float(WindSpeed), 0.16)) + 5.81 - 0.25 * float(WindSpeed)) * (float(Temperature) - 91.4) + 91.4);
+   windchill = float(0.0817 * (3.71 * (math.sqrt(float(WindSpeed))) + 5.81 - 0.25 * float(WindSpeed)) * (float(Temperature) - 91.4) + 91.4);
    Temperature = ConvertTempUnits(float(Temperature), "Fahrenheit", "Celsius")['CelsiusFull'];
   windchillret.update({
   'Celsius': "{:0.2f}".format(float(windchill)), 
@@ -302,19 +308,43 @@ def WindChill(Temperature, WindSpeed, TempUnit = "Fahrenheit", WindUnit = "MPH",
   });
  return windchillret;
 
-def WindChillFahrenheitMPH(Temperature, WindSpeed):
- return WindChill(Temperature, WindSpeed, "Fahrenheit", "MPH");
+def WindChillFahrenheitMPH(Temperature, WindSpeed, NewWindChill=True):
+ return WindChill(Temperature, WindSpeed, "Fahrenheit", "MPH", NewWindChill);
 
-def WindChillFahrenheitKMH(Temperature, WindSpeed):
- return WindChill(Temperature, WindSpeed, "Fahrenheit", "KMH");
+def WindChillOldFahrenheitMPH(Temperature, WindSpeed):
+ return WindChillFahrenheitMPH(Temperature, WindSpeed, "Fahrenheit", "MPH", False);
 
-def WindChillCelsiusKMH(Temperature, WindSpeed):
- return WindChill(Temperature, WindSpeed, "Celsius", "KMH");
+def WindChillNewFahrenheitMPH(Temperature, WindSpeed):
+ return WindChillFahrenheitMPH(Temperature, WindSpeed, "Fahrenheit", "MPH", True);
 
-def WindChillCelsiusMPH(Temperature, WindSpeed):
- return WindChill(Temperature, WindSpeed, "Celsius", "MPH");
+def WindChillFahrenheitKMH(Temperature, WindSpeed, NewWindChill=True):
+ return WindChill(Temperature, WindSpeed, "Fahrenheit", "KMH", NewWindChill);
 
-def WindChillGenXML(TempUnit = "Fahrenheit", WindUnit = "MPH", OutputFile = "-"):
+def WindChillOldFahrenheitKMH(Temperature, WindSpeed):
+ return WindChillFahrenheitKMH(Temperature, WindSpeed, "Fahrenheit", "KMH", False);
+
+def WindChillNewFahrenheitKMH(Temperature, WindSpeed):
+ return WindChillFahrenheitKMH(Temperature, WindSpeed, "Fahrenheit", "KMH", True);
+
+def WindChillCelsiusKMH(Temperature, WindSpeed, NewWindChill=True):
+ return WindChill(Temperature, WindSpeed, "Celsius", "KMH", NewWindChill);
+
+def WindChillOldCelsiusKMH(Temperature, WindSpeed):
+ return WindChillCelsiusKMH(Temperature, WindSpeed, "Celsius", "KMH", False);
+
+def WindChillNewCelsiusKMH(Temperature, WindSpeed):
+ return WindChillCelsiusKMH(Temperature, WindSpeed, "Celsius", "KMH", True);
+
+def WindChillCelsiusMPH(Temperature, WindSpeed, NewWindChill=True):
+ return WindChill(Temperature, WindSpeed, "Celsius", "MPH", NewWindChill);
+
+def WindChillOldCelsiusMPH(Temperature, WindSpeed):
+ return WindChillCelsiusMPH(Temperature, WindSpeed, "Celsius", "MPH", False);
+
+def WindChillNewCelsiusMPH(Temperature, WindSpeed):
+ return WindChillCelsiusMPH(Temperature, WindSpeed, "Celsius", "MPH", True);
+
+def WindChillGenXML(TempUnit = "Fahrenheit", WindUnit = "MPH", NewWindChill=True, OutputFile = "-"):
  TempUnit = TempUnit.capitalize();
  WindUnit = WindUnit.upper();
  mintemp = -45;
@@ -327,7 +357,7 @@ def WindChillGenXML(TempUnit = "Fahrenheit", WindUnit = "MPH", OutputFile = "-")
  while(windstart <= maxwind):
   tempstart = 40;
   while(tempstart >= mintemp):
-   getwcval = WindChill(tempstart, windstart, TempUnit, WindUnit);
+   getwcval = WindChill(tempstart, windstart, TempUnit, WindUnit, NewWindChill);
    if(TempUnit == "Fahrenheit"):
     gettuval = ConvertTempUnits(tempstart, "Fahrenheit", "Celsius");
    if(TempUnit == "Celsius"):
@@ -395,17 +425,47 @@ def WindChillGenXML(TempUnit = "Fahrenheit", WindUnit = "MPH", OutputFile = "-")
   wcof.close();
  return windchillout;
 
-def WindChillGenXMLFahrenheitMPH(Temperature, WindSpeed):
- return WindChillGenXML("Fahrenheit", "MPH", OutputFile);
+def WindChillOldGenXML(TempUnit = "Fahrenheit", WindUnit = "MPH", OutputFile = "-"):
+ return WindChillGenXML(TempUnit, WindUnit, False, OutputFile);
 
-def WindChillGenXMLFahrenheitKMH(Temperature, WindSpeed):
- return WindChillGenXML("Fahrenheit", "KMH", OutputFile);
+def WindChillNewGenXML(TempUnit = "Fahrenheit", WindUnit = "MPH", OutputFile = "-"):
+ return WindChillGenXML(TempUnit, WindUnit, True, OutputFile);
 
-def WindChillGenXMLCelsiusKMH(Temperature, WindSpeed):
- return WindChillGenXML("Celsius", "KMH", OutputFile);
+def WindChillGenXMLFahrenheitMPH(Temperature, WindSpeed, NewWindChill=True, OutputFile = "-"):
+ return WindChillGenXML("Fahrenheit", "MPH", NewWindChill, OutputFile);
 
-def WindChillGenXMLCelsiusMPH(Temperature, WindSpeed):
- return WindChillGenXML("Celsius", "MPH", OutputFile);
+def WindChillOldGenXMLFahrenheitMPH(Temperature, WindSpeed, OutputFile = "-"):
+ return WindChillGenXMLFahrenheitMPH("Fahrenheit", "MPH", False, OutputFile);
+
+def WindChillNewGenXMLFahrenheitMPH(Temperature, WindSpeed, OutputFile = "-"):
+ return WindChillGenXMLFahrenheitMPH("Fahrenheit", "MPH", True, OutputFile);
+
+def WindChillGenXMLFahrenheitKMH(Temperature, WindSpeed, NewWindChill=True, OutputFile = "-"):
+ return WindChillGenXML("Fahrenheit", "KMH", NewWindChill, OutputFile);
+
+def WindChillOldGenXMLFahrenheitKMH(Temperature, WindSpeed, OutputFile = "-"):
+ return WindChillGenXMLFahrenheitKMH("Fahrenheit", "KMH", False, OutputFile);
+
+def WindChillNewGenXMLFahrenheitKMH(Temperature, WindSpeed, OutputFile = "-"):
+ return WindChillGenXMLFahrenheitKMH("Fahrenheit", "KMH", True, OutputFile);
+
+def WindChillGenXMLCelsiusKMH(Temperature, WindSpeed, NewWindChill=True, OutputFile = "-"):
+ return WindChillGenXML("Celsius", "KMH", NewWindChill, OutputFile);
+
+def WindChillOldGenXMLCelsiusKMH(Temperature, WindSpeed, OutputFile = "-"):
+ return WindChillGenXMLCelsiusKMH("Celsius", "KMH", False, OutputFile);
+
+def WindChillNewGenXMLCelsiusKMH(Temperature, WindSpeed, OutputFile = "-"):
+ return WindChillGenXMLCelsiusKMH("Celsius", "KMH", True, OutputFile);
+
+def WindChillGenXMLCelsiusMPH(Temperature, WindSpeed, NewWindChill=True, OutputFile = "-"):
+ return WindChillGenXML("Celsius", "MPH", NewWindChill, OutputFile);
+
+def WindChillOldGenXMLCelsiusMPH(Temperature, WindSpeed, OutputFile = "-"):
+ return WindChillGenXMLCelsiusMPH("Celsius", "MPH", False, OutputFile);
+
+def WindChillNewGenXMLCelsiusMPH(Temperature, WindSpeed, OutputFile = "-"):
+ return WindChillGenXMLCelsiusMPH("Celsius", "MPH", True, OutputFile);
 
 def HeatIndexByDewPoint(Temperature, DewPointTemp, TempUnit = "Fahrenheit"):
  TempUnit = TempUnit.capitalize();
