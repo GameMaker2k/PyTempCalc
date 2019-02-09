@@ -1,9 +1,3 @@
-
-def RelativeHumidityFahrenheit(Temperature, DewPointTemp):
- return RelativeHumidity(Temperature, DewPointTemp, "Fahrenheit");
-
-def RelativeHumidityCelsius(Temperature, Humidity):
- return RelativeHumidity(Temperature, DewPointTemp, "Celsius");
 #!/usr/bin/env python
 # -*- coding: iso-8859-15 -*-
 
