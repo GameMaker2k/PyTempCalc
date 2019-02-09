@@ -1,3 +1,9 @@
+
+def RelativeHumidityFahrenheit(Temperature, DewPointTemp):
+ return RelativeHumidity(Temperature, DewPointTemp, "Fahrenheit");
+
+def RelativeHumidityCelsius(Temperature, Humidity):
+ return RelativeHumidity(Temperature, DewPointTemp, "Celsius");
 #!/usr/bin/env python
 # -*- coding: iso-8859-15 -*-
 
@@ -13,21 +19,22 @@
     Copyright 2016-2019 Game Maker 2k - https://github.com/GameMaker2k
     Copyright 2016-2019 Joshua Przyborowski - https://github.com/JoshuaPrzyborowski
 
-    $FileInfo: pytempcalc.py - Last Update: 1/29/2019 Ver. 0.4.0 RC 1 - Author: joshuatp $
+    $FileInfo: pytempcalc.py - Last Update: 2/9/2019 Ver. 0.4.0 RC 1 - Author: joshuatp $
 '''
 
 # http://www.nws.noaa.gov/om/winter/windchill.shtml
 # http://www.wpc.ncep.noaa.gov/html/windchill.shtml
 # http://www.wpc.ncep.noaa.gov/html/dewrh.shtml
 # http://www.wpc.ncep.noaa.gov/html/heatindex.shtml
+# http://maineharbors.com/weather/convert3.htm
 
 import math;
 
 __program_name__ = "PyTempCalc";
 __project__ = __program_name__;
-__project_url__ = "https://gist.github.com/JoshuaPrzyborowski";
+__project_url__ = "https://github.com/JoshuaPrzyborowski/PyTempCalc";
 __version_info__ = (0, 4, 0, "RC 1", 1);
-__version_date_info__ = (2019, 1, 29, "RC 1", 1);
+__version_date_info__ = (2019, 2, 9, "RC 1", 1);
 __version_date__ = str(__version_date_info__[0])+"."+str(__version_date_info__[1]).zfill(2)+"."+str(__version_date_info__[2]).zfill(2);
 if(__version_info__[4]!=None):
  __version_date_plusrc__ = __version_date__+"-"+str(__version_date_info__[4]);
@@ -161,7 +168,7 @@ def ConvertWindUnitsFromMPHToKMH(Temperature):
 def ConvertWindUnitsFromKMHToMPH(Temperature):
  return ConvertWindUnits(WindSpeed, "KMH", "MPH");
 
-def WindChill(Temperature, WindSpeed, TempUnit = "Fahrenheit", WindUnit = "MPH"):
+def WindChill(Temperature, WindSpeed, TempUnit = "Fahrenheit", WindUnit = "MPH", NewWindChill=True):
  TempUnit = TempUnit.capitalize();
  WindUnit = WindUnit.upper();
  windchillret = {};
@@ -170,7 +177,10 @@ def WindChill(Temperature, WindSpeed, TempUnit = "Fahrenheit", WindUnit = "MPH")
  if(WindUnit != "MPH" and WindUnit != "KMH"):
   return False;
  if(TempUnit == "Fahrenheit" and WindUnit == "MPH"):
-  windchill = float(35.74 + 0.6215 * float(Temperature) - 35.75 * math.pow(float(WindSpeed), 0.16) + 0.4275 * float(Temperature) * math.pow(float(WindSpeed), 0.16));
+  if(NewWindChill):
+   windchill = float(35.74 + 0.6215 * float(Temperature) - 35.75 * math.pow(float(WindSpeed), 0.16) + 0.4275 * float(Temperature) * math.pow(float(WindSpeed), 0.16));
+  else:
+   windchill = float(0.0817 * (3.71 * (math.sqrt(float(WindSpeed), 0.16)) + 5.81 - 0.25 * float(WindSpeed)) * (float(Temperature) - 91.4) + 91.4);
   windchillret.update({
   'Fahrenheit': "{:0.2f}".format(float(windchill)), 
   'Celsius': "{:0.2f}".format(float(ConvertTempUnits(float(windchill), "Fahrenheit", "Celsius")['CelsiusFull'])), 
@@ -199,7 +209,10 @@ def WindChill(Temperature, WindSpeed, TempUnit = "Fahrenheit", WindUnit = "MPH")
   });
  if(TempUnit == "Fahrenheit" and WindUnit == "KMH"):
   WindSpeed = 0.621371 * float(WindSpeed);
-  windchill = float(35.74 + 0.6215 * float(Temperature) - 35.75 * math.pow(float(WindSpeed), 0.16) + 0.4275 * float(Temperature) * math.pow(float(WindSpeed), 0.16));
+  if(NewWindChill):
+   windchill = float(35.74 + 0.6215 * float(Temperature) - 35.75 * math.pow(float(WindSpeed), 0.16) + 0.4275 * float(Temperature) * math.pow(float(WindSpeed), 0.16));
+  else:
+   windchill = float(0.0817 * (3.71 * (math.sqrt(float(WindSpeed), 0.16)) + 5.81 - 0.25 * float(WindSpeed)) * (float(Temperature) - 91.4) + 91.4);
   windchillret.update({
   'Fahrenheit': "{:0.2f}".format(float(windchill)), 
   'Celsius': "{:0.2f}".format(float(ConvertTempUnits(float(windchill), "Fahrenheit", "Celsius")['CelsiusFull'])), 
@@ -227,7 +240,12 @@ def WindChill(Temperature, WindSpeed, TempUnit = "Fahrenheit", WindUnit = "MPH")
   'RomerRounded': RoundToInt(ConvertTempUnits(float(windchill), "Fahrenheit", "Celsius")['RomerFull'])
   });
  if(TempUnit == "Celsius" and WindUnit == "KMH"):
-  windchill = float(13.12 + 0.6215 * float(Temperature) - 11.37 * math.pow(float(WindSpeed), 0.16) + 0.3965 * float(Temperature) * math.pow(float(WindSpeed), 0.16));
+  if(NewWindChill):
+   windchill = float(13.12 + 0.6215 * float(Temperature) - 11.37 * math.pow(float(WindSpeed), 0.16) + 0.3965 * float(Temperature) * math.pow(float(WindSpeed), 0.16));
+  else:
+   Temperature = ConvertTempUnits(float(Temperature), "Celsius", "Fahrenheit")['FahrenheitFull'];
+   windchill = float(0.0817 * (3.71 * (math.sqrt(float(WindSpeed), 0.16)) + 5.81 - 0.25 * float(WindSpeed)) * (float(Temperature) - 91.4) + 91.4);
+   Temperature = ConvertTempUnits(float(Temperature), "Fahrenheit", "Celsius")['CelsiusFull'];
   windchillret.update({
   'Celsius': "{:0.2f}".format(float(windchill)), 
   'Fahrenheit': "{:0.2f}".format(float(ConvertTempUnits(float(windchill), "Celsius", "Fahrenheit")['FahrenheitFull'])), 
@@ -256,7 +274,12 @@ def WindChill(Temperature, WindSpeed, TempUnit = "Fahrenheit", WindUnit = "MPH")
   });
  if(TempUnit == "Celsius" and WindUnit == "MPH"):
   WindSpeed = 1.609344 * float(WindSpeed);
-  windchill = float(13.12 + 0.6215 * float(Temperature) - 11.37 * math.pow(float(WindSpeed), 0.16) + 0.3965 * float(Temperature) * math.pow(float(WindSpeed), 0.16));
+  if(NewWindChill):
+   windchill = float(13.12 + 0.6215 * float(Temperature) - 11.37 * math.pow(float(WindSpeed), 0.16) + 0.3965 * float(Temperature) * math.pow(float(WindSpeed), 0.16));
+  else:
+   Temperature = ConvertTempUnits(float(Temperature), "Celsius", "Fahrenheit")['FahrenheitFull'];
+   windchill = float(0.0817 * (3.71 * (math.sqrt(float(WindSpeed), 0.16)) + 5.81 - 0.25 * float(WindSpeed)) * (float(Temperature) - 91.4) + 91.4);
+   Temperature = ConvertTempUnits(float(Temperature), "Fahrenheit", "Celsius")['CelsiusFull'];
   windchillret.update({
   'Celsius': "{:0.2f}".format(float(windchill)), 
   'Fahrenheit': "{:0.2f}".format(float(ConvertTempUnits(float(windchill), "Celsius", "Fahrenheit")['FahrenheitFull'])), 
