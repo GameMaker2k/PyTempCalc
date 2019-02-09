@@ -306,37 +306,37 @@ def WindChillFahrenheitMPH(Temperature, WindSpeed, NewWindChill=True):
  return WindChill(Temperature, WindSpeed, "Fahrenheit", "MPH", NewWindChill);
 
 def WindChillOldFahrenheitMPH(Temperature, WindSpeed):
- return WindChillFahrenheitMPH(Temperature, WindSpeed, "Fahrenheit", "MPH", False);
+ return WindChillFahrenheitMPH(Temperature, WindSpeed, False);
 
 def WindChillNewFahrenheitMPH(Temperature, WindSpeed):
- return WindChillFahrenheitMPH(Temperature, WindSpeed, "Fahrenheit", "MPH", True);
+ return WindChillFahrenheitMPH(Temperature, WindSpeed, True);
 
 def WindChillFahrenheitKMH(Temperature, WindSpeed, NewWindChill=True):
  return WindChill(Temperature, WindSpeed, "Fahrenheit", "KMH", NewWindChill);
 
 def WindChillOldFahrenheitKMH(Temperature, WindSpeed):
- return WindChillFahrenheitKMH(Temperature, WindSpeed, "Fahrenheit", "KMH", False);
+ return WindChillFahrenheitKMH(Temperature, WindSpeed, False);
 
 def WindChillNewFahrenheitKMH(Temperature, WindSpeed):
- return WindChillFahrenheitKMH(Temperature, WindSpeed, "Fahrenheit", "KMH", True);
+ return WindChillFahrenheitKMH(Temperature, WindSpeed, True);
 
 def WindChillCelsiusKMH(Temperature, WindSpeed, NewWindChill=True):
  return WindChill(Temperature, WindSpeed, "Celsius", "KMH", NewWindChill);
 
 def WindChillOldCelsiusKMH(Temperature, WindSpeed):
- return WindChillCelsiusKMH(Temperature, WindSpeed, "Celsius", "KMH", False);
+ return WindChillCelsiusKMH(Temperature, WindSpeed, False);
 
 def WindChillNewCelsiusKMH(Temperature, WindSpeed):
- return WindChillCelsiusKMH(Temperature, WindSpeed, "Celsius", "KMH", True);
+ return WindChillCelsiusKMH(Temperature, WindSpeed, True);
 
 def WindChillCelsiusMPH(Temperature, WindSpeed, NewWindChill=True):
  return WindChill(Temperature, WindSpeed, "Celsius", "MPH", NewWindChill);
 
 def WindChillOldCelsiusMPH(Temperature, WindSpeed):
- return WindChillCelsiusMPH(Temperature, WindSpeed, "Celsius", "MPH", False);
+ return WindChillCelsiusMPH(Temperature, WindSpeed, False);
 
 def WindChillNewCelsiusMPH(Temperature, WindSpeed):
- return WindChillCelsiusMPH(Temperature, WindSpeed, "Celsius", "MPH", True);
+ return WindChillCelsiusMPH(Temperature, WindSpeed, True);
 
 def WindChillGenXML(TempUnit = "Fahrenheit", WindUnit = "MPH", NewWindChill=True, OutputFile = "-"):
  TempUnit = TempUnit.capitalize();
@@ -425,41 +425,41 @@ def WindChillOldGenXML(TempUnit = "Fahrenheit", WindUnit = "MPH", OutputFile = "
 def WindChillNewGenXML(TempUnit = "Fahrenheit", WindUnit = "MPH", OutputFile = "-"):
  return WindChillGenXML(TempUnit, WindUnit, True, OutputFile);
 
-def WindChillGenXMLFahrenheitMPH(Temperature, WindSpeed, NewWindChill=True, OutputFile = "-"):
+def WindChillGenXMLFahrenheitMPH(NewWindChill=True, OutputFile = "-"):
  return WindChillGenXML("Fahrenheit", "MPH", NewWindChill, OutputFile);
 
-def WindChillOldGenXMLFahrenheitMPH(Temperature, WindSpeed, OutputFile = "-"):
- return WindChillGenXMLFahrenheitMPH("Fahrenheit", "MPH", False, OutputFile);
+def WindChillOldGenXMLFahrenheitMPH(OutputFile = "-"):
+ return WindChillGenXMLFahrenheitMPH(False, OutputFile);
 
-def WindChillNewGenXMLFahrenheitMPH(Temperature, WindSpeed, OutputFile = "-"):
- return WindChillGenXMLFahrenheitMPH("Fahrenheit", "MPH", True, OutputFile);
+def WindChillNewGenXMLFahrenheitMPH(OutputFile = "-"):
+ return WindChillGenXMLFahrenheitMPH(True, OutputFile);
 
-def WindChillGenXMLFahrenheitKMH(Temperature, WindSpeed, NewWindChill=True, OutputFile = "-"):
+def WindChillGenXMLFahrenheitKMH(NewWindChill=True, OutputFile = "-"):
  return WindChillGenXML("Fahrenheit", "KMH", NewWindChill, OutputFile);
 
-def WindChillOldGenXMLFahrenheitKMH(Temperature, WindSpeed, OutputFile = "-"):
- return WindChillGenXMLFahrenheitKMH("Fahrenheit", "KMH", False, OutputFile);
+def WindChillOldGenXMLFahrenheitKMH(OutputFile = "-"):
+ return WindChillGenXMLFahrenheitKMH(False, OutputFile);
 
 def WindChillNewGenXMLFahrenheitKMH(Temperature, WindSpeed, OutputFile = "-"):
- return WindChillGenXMLFahrenheitKMH("Fahrenheit", "KMH", True, OutputFile);
+ return WindChillGenXMLFahrenheitKMH(True, OutputFile);
 
-def WindChillGenXMLCelsiusKMH(Temperature, WindSpeed, NewWindChill=True, OutputFile = "-"):
+def WindChillGenXMLCelsiusKMH(NewWindChill=True, OutputFile = "-"):
  return WindChillGenXML("Celsius", "KMH", NewWindChill, OutputFile);
 
-def WindChillOldGenXMLCelsiusKMH(Temperature, WindSpeed, OutputFile = "-"):
- return WindChillGenXMLCelsiusKMH("Celsius", "KMH", False, OutputFile);
+def WindChillOldGenXMLCelsiusKMH(OutputFile = "-"):
+ return WindChillGenXMLCelsiusKMH(False, OutputFile);
 
-def WindChillNewGenXMLCelsiusKMH(Temperature, WindSpeed, OutputFile = "-"):
- return WindChillGenXMLCelsiusKMH("Celsius", "KMH", True, OutputFile);
+def WindChillNewGenXMLCelsiusKMH(OutputFile = "-"):
+ return WindChillGenXMLCelsiusKMH(True, OutputFile);
 
-def WindChillGenXMLCelsiusMPH(Temperature, WindSpeed, NewWindChill=True, OutputFile = "-"):
+def WindChillGenXMLCelsiusMPH(NewWindChill=True, OutputFile = "-"):
  return WindChillGenXML("Celsius", "MPH", NewWindChill, OutputFile);
 
-def WindChillOldGenXMLCelsiusMPH(Temperature, WindSpeed, OutputFile = "-"):
- return WindChillGenXMLCelsiusMPH("Celsius", "MPH", False, OutputFile);
+def WindChillOldGenXMLCelsiusMPH(OutputFile = "-"):
+ return WindChillGenXMLCelsiusMPH(False, OutputFile);
 
-def WindChillNewGenXMLCelsiusMPH(Temperature, WindSpeed, OutputFile = "-"):
- return WindChillGenXMLCelsiusMPH("Celsius", "MPH", True, OutputFile);
+def WindChillNewGenXMLCelsiusMPH(OutputFile = "-"):
+ return WindChillGenXMLCelsiusMPH(True, OutputFile);
 
 def HeatIndexByDewPoint(Temperature, DewPointTemp, TempUnit = "Fahrenheit"):
  TempUnit = TempUnit.capitalize();
