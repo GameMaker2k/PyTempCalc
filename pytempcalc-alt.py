@@ -52,7 +52,8 @@ def wind_chill(
 
     if new_wind_chill:
         chill = 35.74 + 0.6215 * temp - 35.75 * \
-            math.pow(wind_speed, 0.16) + 0.4275 * temp * math.pow(wind_speed, 0.16)
+            math.pow(wind_speed, 0.16) + 0.4275 * \
+            temp * math.pow(wind_speed, 0.16)
     else:
         chill = 0.0817 * (3.71 * math.sqrt(wind_speed) +
                           5.81 - 0.25 * wind_speed) * (temp - 91.4) + 91.4
