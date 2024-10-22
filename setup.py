@@ -81,8 +81,7 @@ pymodule['keywords'] = 'barcode barcodegenerator barcodes codabar msi code11 cod
 pymodule['url'] = 'https://github.com/GameMaker2k/PyDice'
 pymodule['downloadurl'] = 'https://github.com/JoshuaPrzyborowski/PyDice/archive/master.tar.gz'
 pymodule['packages'] = find_packages()
-pymodule['packagedata'] = {'upcean': ['*.otf', '*.ttf', '*.dtd', '*.xsl', '*.xsd', '*.rng', '*.rnc'],
-                           'upcean/fonts': ['*.otf', '*.ttf'], 'upcean/xml': ['*.dtd', '*.xsl', '*.xsd', '*.rng', '*.rnc']}
+pymodule['packagedata'] = {'.': ['*.xml']}
 pymodule['includepackagedata'] = True
 pymodule['installrequires'] = [install_requires]
 pymodule['longdescription'] = 'PyDice is a barcode library/module for Python. It supports the barcode formats upc-e, upc-a, ean-13, ean-8, ean-2, ean-5, itf14, codabar, code11, code39, code93, and msi.'
